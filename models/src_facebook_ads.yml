@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: facebook_ads
+    schema: "{{ var('facebook_ads_schema', 'facebook_ads') }}"
+    database: "{{ var('facebook_ads_database', target.database) }}"
+    loader: Fivetran
+    loaded_at_field: _fivetran_synced
+    tables:
+      - name: ad_history

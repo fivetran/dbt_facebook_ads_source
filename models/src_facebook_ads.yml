@@ -7,4 +7,9 @@ sources:
     loader: Fivetran
     loaded_at_field: _fivetran_synced
     tables:
+      - name: account_history
       - name: ad_history
+      - name: ad_set_history
+      - name: basic_ad
+      - name: campaign_history
+      - name: creative_history

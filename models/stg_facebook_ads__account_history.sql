@@ -2,7 +2,7 @@
 with base as (
 
     select * 
-    from {{ ref('stg_facebook_ads__ad_history_tmp') }}
+    from {{ ref('stg_facebook_ads__account_history_tmp') }}
 
 ),
 
@@ -11,8 +11,8 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_facebook_ads__ad_history_tmp')),
-                staging_columns=get_ad_history_columns()
+                source_columns=adapter.get_columns_in_relation(ref('stg_facebook_ads__account_history_tmp')),
+                staging_columns=get_account_history_columns()
             )
         }}
         
@@ -22,12 +22,8 @@ fields as (
 fields_xf as (
     
     select 
-        id as ad_id,
-        account_id,
-        ad_set_id,
-        campaign_id,
-        creative_id,
-        name as ad_name,
+        id as account_id,
+        name as account_name,
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
 ),

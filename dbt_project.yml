@@ -12,8 +12,7 @@ snapshot-paths: ["snapshots"]
 
 models:
   facebook_ads_source:
-      example:
-          materialized: view
+    materialized: view
 
 vars:
   facebook_ads_source:

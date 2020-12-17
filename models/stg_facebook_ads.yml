@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_facebook_ads__account_history
+    columns:
+      - name: account_id
+        tests:
+          - unique
+          - not_null
+  - name: stg_facebook_ads__ad_history
+    columns:
+      - name: ad_id
+        tests:
+          - unique
+          - not_null
+  - name: stg_facebook_ads__ad_set_history
+    columns:
+      - name: ad_set_id
+        tests:
+          - unique
+          - not_null
+  - name: stg_facebook_ads__campaign_history
+    columns:
+      - name: campaign_id
+        tests:
+          - unique
+          - not_null
+  - name: stg_facebook_ads__creative_history
+    columns:
+      - name: creative_id
+        tests:
+          - unique
+          - not_null

@@ -1,5 +1,3 @@
-{% set url_field = "coalesce(page_link,template_page_link)" %}
-
 with base as (
 
     select * 
@@ -27,15 +25,8 @@ fields_xf as (
         id as creative_id,
         account_id,
         name as creative_name,
-        {{ url_field }} as url,
-        {{ dbt_utils.split_part(url_field, "'?'", 1) }} as base_url,
-        {{ dbt_utils.get_url_host(url_field) }} as url_host,
-        '/' || {{ dbt_utils.get_url_path(url_field) }} as url_path,
-        {{ dbt_utils.get_url_parameter(url_field, 'utm_source') }} as utm_source,
-        {{ dbt_utils.get_url_parameter(url_field, 'utm_medium') }} as utm_medium,
-        {{ dbt_utils.get_url_parameter(url_field, 'utm_campaign') }} as utm_campaign,
-        {{ dbt_utils.get_url_parameter(url_field, 'utm_content') }} as utm_content,
-        {{ dbt_utils.get_url_parameter(url_field, 'utm_term') }} as utm_term,
+        page_link,
+        template_page_link,
         url_tags,
         asset_feed_spec_link_urls,
         object_story_link_data_child_attachments,

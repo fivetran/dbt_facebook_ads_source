@@ -5,3 +5,5 @@ packages:
   - git: "https://github.com/fivetran/dbt_fivetran_utils.git"
     revision: master
     warn-unpinned: false
+
+  # - local: ../dbt_facebook_ads_creative_history

@@ -27,14 +27,7 @@ fields_xf as (
         name as campaign_name,
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
-),
-
-filtered as (
-
-    select *
-    from fields_xf
-    where is_most_recent_record = True
 
 )
 
-select * from filtered
+select * from fields_xf

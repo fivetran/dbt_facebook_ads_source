@@ -34,20 +34,13 @@ fields_xf as (
         object_story_link_data_description, 
         object_story_link_data_link, 
         object_story_link_data_message,
-        '[{"app_name": "fivetran_ios","app_store_id": "567890","url": "https://fivetran.com","index": 0}]' as template_app_link_spec_ios_dummy,
-        '[{"app_name": "fivetran_ios","app_store_id": "567890","url": "https://fivetran.com","index": 0}]' as template_app_link_spec_ipad_dummy,
-        '[{"app_name": "fivetran_ios","app_store_id": "567890","url": "https://fivetran.com","index": 0}]' as template_app_link_spec_android_dummy,
-        '[{"app_name": "fivetran_ios","app_store_id": "567890","url": "https://fivetran.com","index": 0}]' as template_app_link_spec_iphone_dummy,
+        template_app_link_spec_ios,
+        template_app_link_spec_ipad,
+        template_app_link_spec_android,
+        template_app_link_spec_iphone,
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
-),
-
-filtered as (
-
-    select *
-    from fields_xf
-    where is_most_recent_record = True
-
+    
 )
 
-select * from filtered
+select * from fields_xf

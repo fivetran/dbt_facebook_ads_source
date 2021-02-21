@@ -7,7 +7,6 @@ models:
       - name: account_id
         description: The ID of the ad account.
         tests:
-          - unique
           - not_null
       - name: account_name
         description: Name of the account.
@@ -20,7 +19,6 @@ models:
       - name: ad_id
         description: The ID of this ad.
         tests:
-          - unique
           - not_null
       - name: account_id
         description: The ID of the ad account that this ad belongs to.
@@ -41,7 +39,6 @@ models:
       - name: ad_set_id
         description: The ID of the ad set.
         tests:
-          - unique
           - not_null
       - name: account_id
         description: The ID of the ad account that this ad set belongs to.
@@ -58,7 +55,6 @@ models:
       - name: campaign_id
         description: The ID of the campaign.
         tests:
-          - unique
           - not_null
       - name: account_id
         description: The ID of the ad account that this campaign belongs to.
@@ -72,7 +68,6 @@ models:
     columns:
       - name: creative_id
         tests:
-          - unique
           - not_null
       - name: creative_id
         description: Unique ID for an ad creative.

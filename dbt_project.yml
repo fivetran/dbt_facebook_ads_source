@@ -3,6 +3,8 @@ name: 'facebook_ads_source'
 version: '1.0.0'
 config-version: 2
 
+require-dbt-version: [">=0.18.0", "<0.20.0"]
+
 models:
   facebook_ads_source:
     materialized: table

@@ -1,6 +1,6 @@
 # Facebook Ads (Source)
 
-This package models Facebook Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/facebook-ads). It uses data in the format described by [this ERD](https://docs.google.com/presentation/d/1asDqJrnanE-QTuUOLhe2WyaxxbfJc1GDDIbKCFJieBQ).
+This package models Facebook Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/facebook-ads). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/facebook-ads#schemainformation).
 
 ## Models
 

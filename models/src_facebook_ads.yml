@@ -82,6 +82,8 @@ sources:
       - name: creative_history
         description: Each record in this table reflects a version of a Facebook creative.
         columns:
+          - name: _fivetran_id
+            description: Unique record identifier
           - name: page_link
             description: URL destination of Facebook ads.
           - name: template_page_link
@@ -96,3 +98,27 @@ sources:
             description: A set of query string parameters which will replace or be appended to urls clicked from page post ads, message of the post, and canvas app install creatives only.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
+          - name: page_link
+            description: Link for the page.
+          - name: template_page_link
+            description: URL destination of Facebook dynamic ads.
+          - name: asset_feed_spec_link_urls
+            description: Link to the asset feed spec
+          - name: object_story_link_data_child_attachments
+            description: Link of the object story child attachments
+          - name: object_story_link_data_caption
+            description: Link of the object story caption
+          - name: object_story_link_data_description
+            description: Link of the object story description
+          - name: object_story_link_data_link
+            description: Link of the object story link
+          - name: object_story_link_data_message
+            description: Link of the object story message
+          - name: template_app_link_spec_ios
+            description: Link of the object story spec for ios
+          - name: template_app_link_spec_ipad
+            description: Link of the template app spec for ipad
+          - name: template_app_link_spec_android
+            description: Link of the template app for android
+          - name: template_app_link_spec_iphone
+            description: Link of the template app for iphone

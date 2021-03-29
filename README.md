@@ -29,7 +29,7 @@ vars:
 ```
 
 ### Changing the Build Schema
-By default this package will build the Facebook Ads staging models within a schema titled (<target_schema> + `_stg_facebook`) in your target database. If this is not where you would like your Facebook Ads staging data to be written to, add the following configuration to your `dbt_project.yml` file:
+By default this package will build the Facebook Ads staging models within a schema titled (<target_schema> + `_stg_facebook_ads`) in your target database. If this is not where you would like your Facebook Ads staging data to be written to, add the following configuration to your `dbt_project.yml` file:
 
 ```yml
 # dbt_project.yml

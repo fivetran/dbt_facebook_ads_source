@@ -5,3 +5,6 @@ packages:
   - git: "https://github.com/fivetran/dbt_fivetran_utils.git"
     revision: master
     warn-unpinned: false
+
+  - package: fishtown-analytics/spark_utils
+    version: 0.2.0

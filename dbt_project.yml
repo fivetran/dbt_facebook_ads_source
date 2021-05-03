@@ -20,3 +20,5 @@ vars:
     basic_ad: "{{ source('facebook_ads','basic_ad') }}"
     campaign_history: "{{ source('facebook_ads','campaign_history') }}"
     creative_history: "{{ source('facebook_ads','creative_history') }}"
+  dbt_utils_dispatch_list: ['spark_utils', 'fivetran_utils']
+  fivetran_utils_dispatch_list: ['spark_utils']

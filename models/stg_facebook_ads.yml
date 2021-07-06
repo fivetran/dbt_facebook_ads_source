@@ -77,24 +77,6 @@ models:
         description: Ad account ID for the account this ad creative belongs to.
       - name: creative_name
         description: Name of this ad creative as seen in the ad account's library.
-      - name: url
-        description: The full URL of the ad, extracted from the page_link and template_page_link.      
-      - name: base_url
-        description: The base URL of the ad, extracted from the page_link and template_page_link.
-      - name: url_host
-        description: The URL host of the ad, extracted from the page_link and template_page_link.
-      - name: url_path
-        description: The URL path of the ad, extracted from the page_link and template_page_link.
-      - name: utm_source
-        description: The utm_source parameter of the ad, extracted from the page_link and template_page_link.
-      - name: utm_medium
-        description: The utm_medium parameter of the ad, extracted from the page_link and template_page_link.
-      - name: utm_campaign
-        description: The utm_campaign parameter of the ad, extracted from the page_link and template_page_link.
-      - name: utm_content
-        description: The utm_content parameter of the ad, extracted from the page_link and template_page_link.
-      - name: utm_term
-        description: The utm_term parameter of the ad, extracted from the page_link and template_page_link.
       - name: url_tags
         description: A set of query string parameters which will replace or be appended to urls clicked from page post ads, message of the post, and canvas app install creatives only.
       - name: is_most_recent_record

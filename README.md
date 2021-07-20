@@ -51,7 +51,9 @@ models:
     facebook_ads_source:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
+## Database Support
 
+This package has been tested on BigQuery, Snowflake, Redshift, Postgres, and Spark.
 ## Contributions
 
 Additional contributions to this package are very welcome! Please create issues or open PRs against `master`. Check out [this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package.

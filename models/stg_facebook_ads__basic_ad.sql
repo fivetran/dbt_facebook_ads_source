@@ -1,13 +1,9 @@
-
 with base as (
-
     select * 
     from {{ ref('stg_facebook_ads__basic_ad_tmp') }}
-
 ),
 
 fields as (
-
     select
         {{
             fivetran_utils.fill_staging_columns(
@@ -15,12 +11,11 @@ fields as (
                 staging_columns=get_basic_ad_columns()
             )
         }}
-        
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
 final as (
-    
     select 
         ad_id,
         date as date_day,
@@ -28,6 +23,7 @@ final as (
         impressions,
         inline_link_clicks as clicks,
         spend
+        {{ fivetran_utils.source_relation() }}
     from fields
 )
 

@@ -12,6 +12,11 @@ models:
         description: Name of the account.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
+      - name: source_relation
+        description: >
+          The source where this data was pulled from. If you are making use of the `union_schemas` variable, this will be the source schema.
+          If you are making use of the `union_databases` variable, this will be the source database. If you are not unioining together multiple
+          sources, this will be an empty string.
 
   - name: stg_facebook_ads__ad_history
     description: Each record in this table reflects a Facebook ad.
@@ -32,6 +37,11 @@ models:
         description: Name of the ad.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
+      - name: source_relation
+        description: >
+          The source where this data was pulled from. If you are making use of the `union_schemas` variable, this will be the source schema.
+          If you are making use of the `union_databases` variable, this will be the source database. If you are not unioining together multiple
+          sources, this will be an empty string.
 
   - name: stg_facebook_ads__ad_set_history
     description: Each record in this table reflects a Facebook ad set.
@@ -48,6 +58,11 @@ models:
         description: The name of the ad set.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
+      - name: source_relation
+        description: >
+          The source where this data was pulled from. If you are making use of the `union_schemas` variable, this will be the source schema.
+          If you are making use of the `union_databases` variable, this will be the source database. If you are not unioining together multiple
+          sources, this will be an empty string.
 
   - name: stg_facebook_ads__campaign_history
     description: Each record in this table reflects a Facebook campaign.
@@ -62,6 +77,11 @@ models:
         description: The name of the campaign.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
+      - name: source_relation
+        description: >
+          The source where this data was pulled from. If you are making use of the `union_schemas` variable, this will be the source schema.
+          If you are making use of the `union_databases` variable, this will be the source database. If you are not unioining together multiple
+          sources, this will be an empty string.
 
   - name: stg_facebook_ads__creative_history
     description: Each record in this table reflects a Facebook creative.
@@ -105,6 +125,11 @@ models:
         description: Link of the template app for android
       - name: template_app_link_spec_iphone
         description: Link of the template app for iphone
+      - name: source_relation
+        description: >
+          The source where this data was pulled from. If you are making use of the `union_schemas` variable, this will be the source schema.
+          If you are making use of the `union_databases` variable, this will be the source database. If you are not unioining together multiple
+          sources, this will be an empty string.
 
   - name: stg_facebook_ads__basic_ad
     description: Each record represents the daily performance of an ad in Facebook.
@@ -121,3 +146,8 @@ models:
         description: The number of clicks the ad had on the given day.
       - name: spend
         description: The spend on the ad in the given day.
+      - name: source_relation
+        description: >
+          The source where this data was pulled from. If you are making use of the `union_schemas` variable, this will be the source schema.
+          If you are making use of the `union_databases` variable, this will be the source database. If you are not unioining together multiple
+          sources, this will be an empty string.

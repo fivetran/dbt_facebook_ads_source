@@ -1,1 +1,10 @@
-select * from {{ var('creative_history') }}
+{{
+    fivetran_utils.union_data(
+        table_identifier='creative_history',
+        database_variable='facebook_ads_database',
+        schema_variable='facebook_ads_schema',
+        default_database=target.database,
+        default_schema='facebook_ads',
+        default_variable='creative_history'
+    )
+}}

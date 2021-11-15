@@ -1,12 +1,9 @@
 with base as (
-
     select * 
     from {{ ref('stg_facebook_ads__creative_history_tmp') }}
-
 ),
 
 fields as (
-
     select
         {{
             fivetran_utils.fill_staging_columns(
@@ -14,12 +11,11 @@ fields as (
                 staging_columns=get_creative_history_columns()
             )
         }}
-        
+        {{ fivetran_utils.add_dbt_source_relation() }}
     from base
 ),
 
 fields_xf as (
-    
     select 
         _fivetran_id,
         id as creative_id,
@@ -39,6 +35,7 @@ fields_xf as (
         template_app_link_spec_android,
         template_app_link_spec_iphone,
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
+        {{ fivetran_utils.source_relation() }}
     from fields
     
 )

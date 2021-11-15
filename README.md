@@ -19,7 +19,7 @@ Include in your `packages.yml`
 ```yaml
 packages:
   - package: fivetran/facebook_ads_source
-    version: [">=0.3.0", "<0.4.0"]
+    version: [">=0.4.0", "<0.5.0"]
 ```
 
 ## Configuration
@@ -60,6 +60,20 @@ models:
     facebook_ads_source:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
+
+### Unioning Multiple Facebook Ads Connectors
+If you have multiple Facebook Ads connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either (**note that you cannot use both**) the `union_schemas` or `union_databases` variables:
+
+```yml
+# dbt_project.yml
+...
+config-version: 2
+vars:
+  facebook_ads_source:
+    union_schemas: ['facebook_ads_usa','facebook_ads_canada'] # use this if the data is in different schemas/datasets of the same database/project
+    union_databases: ['facebook_ads_usa','facebook_ads_canada'] # use this if the data is in different databases/projects but uses the same schema name
+```
+
 ## Database Support
 
 This package has been tested on BigQuery, Snowflake, Redshift, Postgres, and Databricks.

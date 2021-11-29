@@ -5,6 +5,8 @@
         schema_variable='facebook_ads_schema',
         default_database=target.database,
         default_schema='facebook_ads',
-        default_variable='account_history'
+        default_variable='account_history',
+        union_schema_variable='facebook_ads_union_schemas',
+        union_database_variable='facebook_ads_union_databases'
     )
 }}

@@ -11,7 +11,10 @@ fields as (
                 staging_columns=get_basic_ad_columns()
             )
         }}
-        {{ fivetran_utils.add_dbt_source_relation() }}
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='facebook_ads_union_schemas',
+            union_database_variable='facebook_ads_union_databases') 
+        }}
     from base
 ),
 
@@ -23,7 +26,6 @@ final as (
         impressions,
         inline_link_clicks as clicks,
         spend
-        {{ fivetran_utils.source_relation() }}
     from fields
 )
 

@@ -1,4 +1,17 @@
-# dbt_facebook_ads_source v0.4.0
+# dbt_facebook_ads_source v0.5.0
+
+## Features
+- Allow for multiple sources by unioning source tables across multiple Facebook Ads connectors.
+  - Refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source#unioning-multiple-facebook-ads-connectors) for more details.
+
+## Under the Hood
+- Unioning: The unioning occurs in the tmp models using the `fivetran_utils.union_data` macro.
+- Source Relation column: To distinguish which source each field comes from, we added a new `source_relation` column in each staging model and applied the `fivetran_utils.source_relation` macro.
+
+## Contributors
+- [@pawelngei](https://github.com/pawelngei)
+
+# dbt_facebook_ads_source v0.1.0 -> v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
 - Adjusts the `require-dbt-version` to now be within the range [">=1.0.0", "<2.0.0"]. Additionally, the package has been updated for dbt v1.0.0 compatibility. If you are using a dbt version <1.0.0, you will need to upgrade in order to leverage the latest version of the package.

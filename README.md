@@ -1,4 +1,5 @@
 [![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # Facebook Ads (Source)
 
 This package models Facebook Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/facebook-ads). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/facebook-ads#schemainformation).
@@ -60,6 +61,19 @@ models:
     facebook_ads_source:
       +schema: my_new_schema_name # leave blank for just the target_schema
 ```
+
+### Unioning Multiple Facebook Ads Connectors
+If you have multiple Facebook Ads connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either (**note that you cannot use both**) the `facebook_ads_union_schemas` or `facebook_ads_union_databases` variables:
+
+```yml
+# dbt_project.yml
+...
+config-version: 2
+vars:
+  facebook_ads_union_schemas: ['facebook_ads_usa','facebook_ads_canada'] # use this if the data is in different schemas/datasets of the same database/project
+  facebook_ads_union_databases: ['facebook_ads_usa','facebook_ads_canada'] # use this if the data is in different databases/projects but uses the same schema name
+```
+
 ## Database Support
 
 This package has been tested on BigQuery, Snowflake, Redshift, Postgres, and Databricks.

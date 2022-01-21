@@ -25,7 +25,8 @@ final as (
         account_id,
         impressions,
         inline_link_clicks as clicks,
-        spend
+        spend,
+        source_relation
     from fields
 )
 

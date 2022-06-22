@@ -19,18 +19,19 @@ fields as (
     from base
 ),
 
-fields_xf as (
+final as (
     
     select 
+        updated_time,
         id as ad_id,
+        name as ad_name,
         account_id,
         ad_set_id,
         campaign_id,
         creative_id,
-        name as ad_name,
-        row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
+        row_number() over (partition by id order by updated_time desc) = 1 as is_most_recent_record
     from fields
-
 )
 
-select * from fields_xf
+select * 
+from final

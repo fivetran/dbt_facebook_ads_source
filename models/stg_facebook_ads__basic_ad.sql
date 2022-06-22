@@ -23,12 +23,17 @@ final as (
     
     select 
         ad_id,
+        ad_name,
+        adset_name as ad_set_name,
         date as date_day,
         account_id,
         impressions,
         inline_link_clicks as clicks,
-        spend
+        spend,
+        reach,
+        frequency
     from fields
 )
 
-select * from final
+select * 
+from final

@@ -19,15 +19,24 @@ fields as (
     from base
 ),
 
-fields_xf as (
+final as (
     
     select 
-        id as campaign_id,
+        updated_time,
+        created_time,
         account_id,
+        id as campaign_id,
         name as campaign_name,
-        row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
+        start_time,
+        stop_time as end_time,
+        effective_status,
+        daily_budget,
+        lifetime_budget,
+        budget_remaining,
+        row_number() over (partition by id order by updated_time desc) = 1 as is_most_recent_record
     from fields
 
 )
 
-select * from fields_xf
+select * 
+from final

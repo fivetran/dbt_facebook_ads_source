@@ -19,14 +19,20 @@ fields as (
     from base
 ),
 
-fields_xf as (
+final as (
     
     select 
         id as account_id,
         name as account_name,
+        account_status,
+        business_country_code,
+        created_time,
+        currency,
+        timezone_name,
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
 
 )
 
-select * from fields_xf
+select * 
+from final

@@ -1,3 +1,17 @@
+# dbt_facebook_ads_source v0.5.0
+
+## 🎉 Feature Enhancements 🎉
+PR (#25)[https://github.com/fivetran/dbt_facebook_ads_source/pull/22] includes the changes:
+- Updates source models to include more potentially useful columns and respective definitions within `src.yml` and `stg.yml`.
+- Added passthrough functionality for `BASIC_AD` pre-built report using `facebook_ads__basic_ad_metrics` variable.
+- Updates `is_most_recent_record` logic to take in `updated_time` rather than `_fivetran_synced` for the following models:
+  - `stg_facebook_ads__campaign_history`
+  - `stg_facebook_ads__ad_set_history`
+  - `stg_facebook_ads__ad_history`
+- For models having an `updated_time` field available, a corresponding model grain test was added.
+- Addition of identifier variables for each of the source tables to allow for further flexibility in source table direction within the dbt project.
+- `README` updates for easier navigation and use of the package.
+
 # dbt_facebook_ads_source v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨

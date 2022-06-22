@@ -29,7 +29,7 @@ final as (
         name as campaign_name,
         start_time,
         stop_time as end_time,
-        effective_status,
+        status,
         daily_budget,
         lifetime_budget,
         budget_remaining,

@@ -32,7 +32,7 @@ final as (
         bid_strategy,
         daily_budget,
         budget_remaining,
-        effective_status,
+        status,
         row_number() over (partition by id order by updated_time desc) = 1 as is_most_recent_record
     from fields
 

@@ -32,6 +32,10 @@ final as (
         spend,
         reach,
         frequency
+
+        {% for metric in var('facebook_ads__basic_ad_metrics', []) %}
+        , {{ metric }}
+        {% endfor %}
     from fields
 )
 

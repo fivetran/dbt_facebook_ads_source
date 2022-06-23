@@ -26,6 +26,7 @@ valid_utm_fields as (
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_valid_utm_record
     from fields 
     where url_tags not in ('{}','"[]"')
+        and url_tags is not null
 ),
 
 final as (

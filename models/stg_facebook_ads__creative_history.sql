@@ -21,6 +21,7 @@ fields as (
 valid_utm_fields as (
 
     select
+        _fivetran_id,
         _fivetran_synced,
         id,
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_valid_utm_record
@@ -53,6 +54,7 @@ final as (
     from fields
     left join valid_utm_fields 
         on fields.id = valid_utm_fields.id 
+        and fields._fivetran_id = valid_utm_fields._fivetran_id
 )
 
 select * 

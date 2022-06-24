@@ -10,19 +10,19 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-# facebook Ads Source dbt Package ([Docs](https://fivetran.github.io/dbt_facebook_ads_source/))
+# Facebook Ads Source dbt Package ([Docs](https://fivetran.github.io/dbt_facebook_ads_source/))
 # 📣 What does this dbt package do?
-- Materializes [facebook Ads staging tables](https://fivetran.github.io/dbt_facebook_ads_source/#!/overview/facebook_ads_source/models/?g_v=1&g_e=seeds) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/facebook-ads#schemainformation). These staging tables clean, test, and prepare your facebook_ads data from [Fivetran's connector](https://fivetran.com/docs/applications/facebook-ads) for analysis by doing the following:
+- Materializes [Facebook Ads staging tables](https://fivetran.github.io/dbt_facebook_ads_source/#!/overview/facebook_ads_source/models/?g_v=1&g_e=seeds) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/facebook-ads#schemainformation). These staging tables clean, test, and prepare your facebook_ads data from [Fivetran's connector](https://fivetran.com/docs/applications/facebook-ads) for analysis by doing the following:
   - Name columns for consistency across all packages and for easier analysis
   - Adds freshness tests to source data
   - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
-- Generates a comprehensive data dictionary of your facebook_ads data through the [dbt docs site](https://fivetran.github.io/dbt_facebook_ads_source/).
-- These tables are designed to work simultaneously with our [facebook Ads transformation package](https://github.com/fivetran/dbt_facebook_ads).
+- Generates a comprehensive data dictionary of your Facebook Ads data through the [dbt docs site](https://fivetran.github.io/dbt_facebook_ads_source/).
+- These tables are designed to work simultaneously with our [Facebook Ads transformation package](https://github.com/fivetran/dbt_facebook_ads).
 
 # 🎯 How do I use the dbt package?
 ## Step 1: Prerequisites
 To use this dbt package, you must have the following:
-- At least one Fivetran facebook Ads connector syncing data into your destination. 
+- At least one Fivetran Facebook Ads connector syncing data into your destination. 
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 - You will need to configure your Facebook Ads connector to pull the `BASIC_AD` pre-built report. Follow the below steps in the Fivetran UI to do so:
     1. Navigate to the connector setup form (**Setup** -> **Edit connection details** for pre-existing connectors)
@@ -46,11 +46,11 @@ Include the following facebook_ads_source package version in your `packages.yml`
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yaml
 packages:
-  - package: fivetran/facebook_ads_source
+  - package: fivetran/facebook_ads
     version: [">=0.5.0", "<0.6.0"]
 ```
 ## Step 3: Define database and schema variables
-By default, this package runs using your destination and the `facebook_ads` schema. If this is not where your facebook_ads data is (for example, if your facebook_ads schema is named `facebook_ads_fivetran`), add the following configuration to your root `dbt_project.yml` file:
+By default, this package runs using your destination and the `facebook_ads` schema. If this is not where your Facebook Ads data is (for example, if your facebook_ads schema is named `facebook_ads_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 vars:
@@ -67,7 +67,7 @@ vars:
     facebook_ads__basic_ad_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from facebook_ads.basic_ad
 ```
 ### Change the build schema
-By default, this package builds the facebook_ads staging models within a schema titled (`<target_schema>` + `_stg_facebook_ads`) in your destination. If this is not where you would like your facebook_ads staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
+By default, this package builds the Facebook Ads staging models within a schema titled (`<target_schema>` + `_stg_facebook_ads`) in your destination. If this is not where you would like your Facebook Ads staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 models:

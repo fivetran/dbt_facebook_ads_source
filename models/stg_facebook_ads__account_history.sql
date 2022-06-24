@@ -23,6 +23,7 @@ final as (
     
     select 
         id as account_id,
+        _fivetran_synced,
         name as account_name,
         account_status,
         business_country_code,

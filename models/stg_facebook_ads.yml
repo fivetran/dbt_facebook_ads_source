@@ -3,6 +3,11 @@ version: 2
 models:
   - name: stg_facebook_ads__account_history
     description: Each record in this table reflects a Facebook ad account.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - account_id
+            - _fivetran_synced
     columns:
       - name: account_id
         description: The ID of the ad account.
@@ -130,9 +135,16 @@ models:
 
   - name: stg_facebook_ads__creative_history
     description: Each record in this table reflects a Facebook creative.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - creative_id
+            - _fivetran_synced
     columns:
       - name: _fivetran_id
         description: Unique record identifier
+      - name: _fivetran_synced
+        description: "{{ doc('_fivetran_synced') }}"
       - name: creative_id
         tests:
           - not_null

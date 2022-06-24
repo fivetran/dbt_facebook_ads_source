@@ -8,7 +8,7 @@ PR (#25)[https://github.com/fivetran/dbt_facebook_ads_source/pull/22] includes t
   - `stg_facebook_ads__campaign_history`
   - `stg_facebook_ads__ad_set_history`
   - `stg_facebook_ads__ad_history`
-- For models having an `updated_time` field available, a corresponding model grain test was added.
+- Model grain tests were added for better data integrity.
 - Addition of identifier variables for each of the source tables to allow for further flexibility in source table direction within the dbt project.
 - `README` updates for easier navigation and use of the package.
 

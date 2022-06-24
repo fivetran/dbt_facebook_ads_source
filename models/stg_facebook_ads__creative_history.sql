@@ -22,6 +22,7 @@ final as (
     
     select 
         _fivetran_id,
+        _fivetran_synced,
         id as creative_id,
         account_id,
         name as creative_name,

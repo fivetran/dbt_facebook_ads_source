@@ -156,8 +156,8 @@ models:
         description: Name of this ad creative as seen in the ad account's library.
       - name: url_tags
         description: A set of query string parameters which will replace or be appended to urls clicked from page post ads, message of the post, and canvas app install creatives only.
-      - name: is_most_recent_valid_utm_record
-        description: Indicates whether a record is the most recent version of that record AND has valid UTM fields.
+      - name: is_most_recent_record
+        description: Indicates whether a record is the most recent version of that record.
       - name: page_link
         description: Link for the page.
       - name: template_page_link
@@ -194,6 +194,10 @@ models:
     columns:
       - name: ad_id
         description: The ID of the ad the report relates to.
+      - name: ad_name
+        description: Name of the ad the report relates to.
+      - name: ad_set_name
+        description: Name of the ad set the report relates to.
       - name: date_day
         description: The date of the reported performance.
       - name: account_id

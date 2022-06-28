@@ -46,7 +46,7 @@ Include the following facebook_ads_source package version in your `packages.yml`
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yaml
 packages:
-  - package: fivetran/facebook_ads
+  - package: fivetran/facebook_ads_source
     version: [">=0.5.0", "<0.6.0"]
 ```
 ## Step 3: Define database and schema variables
@@ -67,7 +67,7 @@ vars:
     facebook_ads__basic_ad_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from facebook_ads.basic_ad
 ```
 ### Change the build schema
-By default, this package builds the Facebook Ads staging models within a schema titled (`<target_schema>` + `_stg_facebook_ads`) in your destination. If this is not where you would like your Facebook Ads staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
+By default, this package builds the Facebook Ads staging models within a schema titled (`<target_schema>` + `_facebook_ads_source`) in your destination. If this is not where you would like your Facebook Ads staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 models:

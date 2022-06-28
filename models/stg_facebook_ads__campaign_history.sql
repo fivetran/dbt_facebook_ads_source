@@ -22,6 +22,7 @@ fields as (
 final as (
     
     select 
+        _fivetran_synced,
         updated_time,
         created_time,
         account_id,

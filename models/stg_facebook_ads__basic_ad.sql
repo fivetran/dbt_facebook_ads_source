@@ -22,13 +22,13 @@ fields as (
 final as (
     
     select 
-        ad_id,
+        cast(ad_id as {{ dbt_utils.type_bigint() }}) as ad_id,
         ad_name,
         adset_name as ad_set_name,
         date as date_day,
-        account_id,
+        cast(account_id as {{ dbt_utils.type_bigint() }}) as account_id,
         impressions,
-        inline_link_clicks as clicks,
+        coalesce(inline_link_clicks,0) as clicks,
         spend,
         reach,
         frequency

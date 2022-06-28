@@ -24,10 +24,10 @@ final as (
     select 
         _fivetran_synced,
         updated_time,
-        id as ad_set_id,
+        cast(id as {{ dbt_utils.type_bigint() }}) as ad_set_id,
         name as ad_set_name,
-        account_id,
-        campaign_id,
+        cast(account_id as {{ dbt_utils.type_bigint() }}) as account_id,
+        cast(campaign_id as {{ dbt_utils.type_bigint() }}) as campaign_id,
         start_time,
         end_time,
         bid_strategy,

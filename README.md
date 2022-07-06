@@ -64,7 +64,7 @@ By default, this package will select `clicks`, `impressions`, and `cost` from th
 
 ```yml
 vars:
-    facebook_ads__basic_ad_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from facebook_ads.basic_ad
+  facebook_ads__basic_ad_passthrough_metrics: ['the', 'list', 'of', 'metric', 'columns', 'to', 'include'] # from facebook_ads.basic_ad
 ```
 ### Change the build schema
 By default, this package builds the Facebook Ads staging models within a schema titled (`<target_schema>` + `_facebook_ads_source`) in your destination. If this is not where you would like your Facebook Ads staging data to be written to, add the following configuration to your root `dbt_project.yml` file:

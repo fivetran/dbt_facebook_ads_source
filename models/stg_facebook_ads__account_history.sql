@@ -1,9 +1,9 @@
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
 
 with base as (
 
     select * 
     from {{ ref('stg_facebook_ads__account_history_tmp') }}
-
 ),
 
 fields as (
@@ -27,7 +27,7 @@ final as (
         name as account_name,
         account_status,
         business_country_code,
-        created_time,
+        created_time as created_at,
         currency,
         timezone_name,
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record

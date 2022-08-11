@@ -19,11 +19,13 @@ models:
         description: "{{ doc('is_most_recent_record') }}"
       - name: _fivetran_synced
         description: "{{ doc('_fivetran_synced') }}"
+        tests:
+          - not_null
       - name: account_status
         description: Current status of account.
       - name: business_country_code
         description: Country code of business associated to account.
-      - name: created_time
+      - name: created_at
         description: The time account was created.
       - name: currency
         description: Currency associated with account.
@@ -54,10 +56,10 @@ models:
         description: Name of the ad.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"
-      - name: updated_time
+      - name: updated_at
         description: "{{ doc('updated_time') }}"
+        tests:
+          - not_null
 
   - name: stg_facebook_ads__ad_set_history
     description: Each record in this table reflects a Facebook ad set.
@@ -79,13 +81,13 @@ models:
         description: The name of the ad set.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"
-      - name: updated_time
+      - name: updated_at
         description: "{{ doc('updated_time') }}"
-      - name: start_time
+        tests:
+          - not_null
+      - name: start_at
         description: Timestamp of designated ad set start time.
-      - name: end_time
+      - name: end_at
         description: Timestamp of designated ad set end time.
       - name: bid_strategy
         description: Bid strategy values are - 'LOWEST_COST_WITHOUT_CAP', 'LOWEST_COST_WITH_BID_CAP', 'COST_CAP', 'LOWEST_COST_WITH_MIN_ROAS'.
@@ -102,7 +104,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - campaign_id
-            - updated_time
+            - updated_at
     columns:
       - name: campaign_id
         description: The ID of the campaign.
@@ -114,15 +116,15 @@ models:
         description: The name of the campaign.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"
-      - name: updated_time
+      - name: updated_at
         description: "{{ doc('updated_time') }}"
-      - name: created_time
+        tests:
+          - not_null
+      - name: created_at
         description: The time the campaign was created.
-      - name: start_time
+      - name: start_at
         description: Timestamp of designated campaign start time.
-      - name: end_time
+      - name: end_at
         description: Timestamp of designated campaign end time.
       - name: daily_budget
         description: Daily budget of campaign.
@@ -145,6 +147,8 @@ models:
         description: Unique record identifier
       - name: _fivetran_synced
         description: "{{ doc('_fivetran_synced') }}"
+        tests:
+          - not_null
       - name: creative_id
         tests:
           - not_null
@@ -194,6 +198,8 @@ models:
     columns:
       - name: ad_id
         description: The ID of the ad the report relates to.
+        tests:
+          - not_null
       - name: ad_name
         description: Name of the ad the report relates to.
       - name: ad_set_name
@@ -202,6 +208,8 @@ models:
         description: The date of the reported performance.
       - name: account_id
         description: The ID of the ad account that this ad belongs to.
+        tests:
+          - not_null
       - name: impressions
         description: The number of impressions the ad had on the given day.
       - name: clicks
@@ -212,5 +220,3 @@ models:
         description: The number of people who saw any content from your Page or about your Page. This metric is estimated.
       - name: frequency
         description: The average number of times each person saw your ad; it is calculated as impressions divided by reach.
-      - name: _fivetran_synced
-        description: "{{ doc('_fivetran_synced') }}"

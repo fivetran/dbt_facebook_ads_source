@@ -1,8 +1,9 @@
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
+
 with base as (
 
     select * 
     from {{ ref('stg_facebook_ads__creative_history_tmp') }}
-
 ),
 
 fields as (

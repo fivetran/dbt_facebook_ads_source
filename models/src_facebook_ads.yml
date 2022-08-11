@@ -15,6 +15,8 @@ sources:
     tables:
       - name: account_history
         description: Each record in this table reflects a version of a Facebook ad account.
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) }}"
         identifier: "{{ var('facebook_ads_account_history_identifier', 'account_history') }}"
         columns:
           - name: id
@@ -36,6 +38,8 @@ sources:
 
       - name: ad_history
         description: Each record in this table reflects a version of a Facebook ad.
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) }}"
         identifier: "{{ var('facebook_ads_ad_history_identifier', 'ad_history') }}"
         columns:
           - name: id
@@ -57,6 +61,8 @@ sources:
 
       - name: ad_set_history
         description: Each record in this table reflects a version of a Facebook ad set.
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) }}"
         identifier: "{{ var('facebook_ads_ad_set_history_identifier', 'ad_set_history') }}"
         columns:
           - name: id
@@ -86,6 +92,8 @@ sources:
 
       - name: basic_ad
         description: Each record represents the daily performance of an ad in Facebook.
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) }}"
         identifier: "{{ var('facebook_ads_basic_ad_identifier', 'basic_ad') }}"
         columns:
           - name: ad_id
@@ -113,6 +121,8 @@ sources:
 
       - name: campaign_history
         description: Each record in this table reflects a version of a Facebook campaign.
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) }}"
         identifier: "{{ var('facebook_ads_campaign_history_identifier', 'campaign_history') }}"
         columns:
           - name: id
@@ -142,6 +152,8 @@ sources:
 
       - name: creative_history
         description: Each record in this table reflects a version of a Facebook creative.
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) }}"
         identifier: "{{ var('facebook_ads_creative_history_identifier', 'creative_history') }}"
         columns:
           - name: _fivetran_id

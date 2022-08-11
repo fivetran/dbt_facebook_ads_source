@@ -1,9 +1,9 @@
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
 
 with base as (
 
     select * 
     from {{ ref('stg_facebook_ads__ad_history_tmp') }}
-
 ),
 
 fields as (
@@ -22,11 +22,10 @@ fields as (
 final as (
     
     select 
-        _fivetran_synced,
-        updated_time,
+        updated_time as updated_at,
         cast(id as {{ dbt_utils.type_bigint() }}) as ad_id,
         name as ad_name,
-        cast(id as {{ dbt_utils.type_bigint() }}) as account_id,
+        cast(account_id as {{ dbt_utils.type_bigint() }}) as account_id,
         cast(ad_set_id as {{ dbt_utils.type_bigint() }}) as ad_set_id,   
         cast(campaign_id as {{ dbt_utils.type_bigint() }}) as campaign_id,
         cast(creative_id as {{ dbt_utils.type_bigint() }}) as creative_id,

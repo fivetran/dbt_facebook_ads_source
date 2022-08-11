@@ -1,9 +1,9 @@
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
 
 with base as (
 
     select * 
     from {{ ref('stg_facebook_ads__basic_ad_tmp') }}
-
 ),
 
 fields as (
@@ -33,9 +33,7 @@ final as (
         reach,
         frequency
 
-        {% for metric in var('facebook_ads__basic_ad_passthrough_metrics', []) %}
-        , {{ metric }}
-        {% endfor %}
+        {{ fivetran_utils.fill_pass_through_columns('facebook_ads__basic_ad_passthrough_metrics') }}
     from fields
 )
 

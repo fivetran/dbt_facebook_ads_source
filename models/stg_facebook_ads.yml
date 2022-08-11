@@ -38,7 +38,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - ad_id
-            - updated_time
+            - updated_at
     columns:
       - name: ad_id
         description: The ID of this ad.
@@ -67,7 +67,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - ad_set_id
-            - updated_time
+            - updated_at
     columns:
       - name: ad_set_id
         description: The ID of the ad set.

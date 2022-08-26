@@ -3,7 +3,13 @@
 ## 🎉 Feature Enhancements 🎉
 PR (#25)[https://github.com/fivetran/dbt_facebook_ads_source/pull/22] includes the following changes:
 - Updates source models to include more potentially useful columns and respective definitions within `src.yml` and `stg.yml`.
-- Added passthrough functionality for `BASIC_AD` pre-built report using `facebook_ads__basic_ad_metrics` variable.
+- Added passthrough functionality for `BASIC_AD` pre-built report using `facebook_ads__basic_ad_metrics` variable.`facebook_ads__basic_ad_metrics` example.
+```yml
+vars:
+  facebook_ads__basic_ad_metrics:
+    - name: "my_field_to_include" # Required: Name of the field within the source.
+      alias: "field_alias" # Optional: If you wish to alias the field within the staging model.
+```
 - Updates `is_most_recent_record` logic to take in `updated_time` rather than `_fivetran_synced` for the following models:
   - `stg_facebook_ads__campaign_history`
   - `stg_facebook_ads__ad_set_history`

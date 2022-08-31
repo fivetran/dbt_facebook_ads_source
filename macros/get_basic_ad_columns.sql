@@ -15,7 +15,6 @@
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('facebook_ads__basic_ad_passthrough_metrics')) }}
 
-
 {{ return(columns) }}
 
 {% endmacro %}

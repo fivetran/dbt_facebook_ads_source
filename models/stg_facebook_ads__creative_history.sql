@@ -1,8 +1,9 @@
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
+
 with base as (
 
     select * 
     from {{ ref('stg_facebook_ads__creative_history_tmp') }}
-
 ),
 
 fields as (
@@ -18,12 +19,13 @@ fields as (
     from base
 ),
 
-fields_xf as (
+final as (
     
     select 
         _fivetran_id,
-        id as creative_id,
-        account_id,
+        _fivetran_synced,
+        cast(id as {{ dbt_utils.type_bigint() }}) as creative_id,
+        cast(account_id as {{ dbt_utils.type_bigint() }}) as account_id,
         name as creative_name,
         page_link,
         template_page_link,
@@ -40,7 +42,7 @@ fields_xf as (
         template_app_link_spec_iphone,
         row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
-    
 )
 
-select * from fields_xf
+select * 
+from final

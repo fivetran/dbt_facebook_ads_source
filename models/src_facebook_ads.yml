@@ -4,11 +4,21 @@ sources:
   - name: facebook_ads
     schema: "{{ var('facebook_ads_schema', 'facebook_ads') }}"
     database: "{% if target.type != 'spark'%}{{ var('facebook_ads_database', target.database) }}{% endif %}"
+    
     loader: Fivetran
     loaded_at_field: _fivetran_synced
+    
+    freshness: 
+      warn_after: {count: 48, period: hour}
+      error_after: {count: 168, period: hour}
+
+    config:
+      enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) }}"
+      
     tables:
       - name: account_history
         description: Each record in this table reflects a version of a Facebook ad account.
+        identifier: "{{ var('facebook_ads_account_history_identifier', 'account_history') }}"
         columns:
           - name: id
             description: The ID of the ad account.
@@ -16,9 +26,20 @@ sources:
             description: Name of the account.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
+          - name: account_status
+            description: Current status of account.
+          - name: business_country_code
+            description: Country code of business associated to account.
+          - name: created_time
+            description: The time account was created.
+          - name: currency
+            description: Currency associated with account.
+          - name: timezone_name
+            description: Timezone associated with account.
 
       - name: ad_history
         description: Each record in this table reflects a version of a Facebook ad.
+        identifier: "{{ var('facebook_ads_ad_history_identifier', 'ad_history') }}"
         columns:
           - name: id
             description: The ID of this ad.
@@ -34,9 +55,12 @@ sources:
             description: Name of the ad.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
+          - name: updated_time
+            description: "{{ doc('updated_time') }}"
 
       - name: ad_set_history
         description: Each record in this table reflects a version of a Facebook ad set.
+        identifier: "{{ var('facebook_ads_ad_set_history_identifier', 'ad_set_history') }}"
         columns:
           - name: id
             description: The ID of the ad set.
@@ -48,12 +72,31 @@ sources:
             description: The name of the ad set.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
+          - name: updated_time
+            description: "{{ doc('updated_time') }}"
+          - name: start_time
+            description: Timestamp of designated ad set start time.
+          - name: end_time
+            description: Timestamp of designated ad set end time.
+          - name: bid_strategy
+            description: Bid strategy values are - 'LOWEST_COST_WITHOUT_CAP', 'LOWEST_COST_WITH_BID_CAP', 'COST_CAP', 'LOWEST_COST_WITH_MIN_ROAS'.
+          - name: daily_budget
+            description: Daily budget of ad set.
+          - name: budget_remaining
+            description: Remaining budget of ad set.
+          - name: status
+            description: Status values are - 'ACTIVE', 'PAUSED', 'DELETED', 'ARCHIVED'.
 
       - name: basic_ad
         description: Each record represents the daily performance of an ad in Facebook.
+        identifier: "{{ var('facebook_ads_basic_ad_identifier', 'basic_ad') }}"
         columns:
           - name: ad_id
             description: The ID of the ad the report relates to.
+          - name: ad_name
+            description: Name of the ad the report relates to.
+          - name: adset_name
+            description: Name of the ad set the report relates to.
           - name: date
             description: The date of the reported performance.
           - name: account_id
@@ -64,11 +107,16 @@ sources:
             description: The number of clicks the ad had on the given day.
           - name: spend
             description: The spend on the ad in the given day.
+          - name: reach
+            description: The number of people who saw any content from your Page or about your Page. This metric is estimated.
+          - name: frequency
+            description: The average number of times each person saw your ad; it is calculated as impressions divided by reach.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
 
       - name: campaign_history
         description: Each record in this table reflects a version of a Facebook campaign.
+        identifier: "{{ var('facebook_ads_campaign_history_identifier', 'campaign_history') }}"
         columns:
           - name: id
             description: The ID of the campaign.
@@ -78,9 +126,26 @@ sources:
             description: The name of the campaign.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
+          - name: updated_time
+            description: "{{ doc('updated_time') }}"
+          - name: created_time
+            description: The time the campaign was created.
+          - name: start_time
+            description: Timestamp of designated campaign start time.
+          - name: stop_time
+            description: Timestamp of designated campaign end time.
+          - name: daily_budget
+            description: Daily budget of campaign.
+          - name: budget_remaining
+            description: Remaining budget of campaign.
+          - name: lifetime_budget
+            description: Lifetime budget of the campaign.
+          - name: status
+            description: Status values are - 'ACTIVE', 'PAUSED', 'DELETED', 'ARCHIVED'.
 
       - name: creative_history
         description: Each record in this table reflects a version of a Facebook creative.
+        identifier: "{{ var('facebook_ads_creative_history_identifier', 'creative_history') }}"
         columns:
           - name: _fivetran_id
             description: Unique record identifier

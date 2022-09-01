@@ -3,6 +3,11 @@ version: 2
 models:
   - name: stg_facebook_ads__account_history
     description: Each record in this table reflects a Facebook ad account.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - account_id
+            - _fivetran_synced
     columns:
       - name: account_id
         description: The ID of the ad account.
@@ -12,9 +17,28 @@ models:
         description: Name of the account.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
+      - name: _fivetran_synced
+        description: "{{ doc('_fivetran_synced') }}"
+        tests:
+          - not_null
+      - name: account_status
+        description: Current status of account.
+      - name: business_country_code
+        description: Country code of business associated to account.
+      - name: created_at
+        description: The time account was created.
+      - name: currency
+        description: Currency associated with account.
+      - name: timezone_name
+        description: Timezone associated with account.
 
   - name: stg_facebook_ads__ad_history
     description: Each record in this table reflects a Facebook ad.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - ad_id
+            - updated_at
     columns:
       - name: ad_id
         description: The ID of this ad.
@@ -32,9 +56,18 @@ models:
         description: Name of the ad.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
+      - name: updated_at
+        description: "{{ doc('updated_time') }}"
+        tests:
+          - not_null
 
   - name: stg_facebook_ads__ad_set_history
     description: Each record in this table reflects a Facebook ad set.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - ad_set_id
+            - updated_at
     columns:
       - name: ad_set_id
         description: The ID of the ad set.
@@ -48,9 +81,30 @@ models:
         description: The name of the ad set.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
+      - name: updated_at
+        description: "{{ doc('updated_time') }}"
+        tests:
+          - not_null
+      - name: start_at
+        description: Timestamp of designated ad set start time.
+      - name: end_at
+        description: Timestamp of designated ad set end time.
+      - name: bid_strategy
+        description: Bid strategy values are - 'LOWEST_COST_WITHOUT_CAP', 'LOWEST_COST_WITH_BID_CAP', 'COST_CAP', 'LOWEST_COST_WITH_MIN_ROAS'.
+      - name: daily_budget
+        description: Daily budget of ad set.
+      - name: budget_remaining
+        description: Remaining budget of ad set.
+      - name: status
+        description: Status values are - 'ACTIVE', 'PAUSED', 'DELETED', 'ARCHIVED'.
 
   - name: stg_facebook_ads__campaign_history
     description: Each record in this table reflects a Facebook campaign.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - campaign_id
+            - updated_at
     columns:
       - name: campaign_id
         description: The ID of the campaign.
@@ -62,12 +116,39 @@ models:
         description: The name of the campaign.
       - name: is_most_recent_record
         description: "{{ doc('is_most_recent_record') }}"
+      - name: updated_at
+        description: "{{ doc('updated_time') }}"
+        tests:
+          - not_null
+      - name: created_at
+        description: The time the campaign was created.
+      - name: start_at
+        description: Timestamp of designated campaign start time.
+      - name: end_at
+        description: Timestamp of designated campaign end time.
+      - name: daily_budget
+        description: Daily budget of campaign.
+      - name: budget_remaining
+        description: Remaining budget of campaign.
+      - name: lifetime_budget
+        description: Lifetime budget of the campaign.
+      - name: status
+        description: Status values are - 'ACTIVE', 'PAUSED', 'DELETED', 'ARCHIVED'.
 
   - name: stg_facebook_ads__creative_history
     description: Each record in this table reflects a Facebook creative.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - creative_id
+            - _fivetran_synced
     columns:
       - name: _fivetran_id
         description: Unique record identifier
+      - name: _fivetran_synced
+        description: "{{ doc('_fivetran_synced') }}"
+        tests:
+          - not_null
       - name: creative_id
         tests:
           - not_null
@@ -80,7 +161,7 @@ models:
       - name: url_tags
         description: A set of query string parameters which will replace or be appended to urls clicked from page post ads, message of the post, and canvas app install creatives only.
       - name: is_most_recent_record
-        description: "{{ doc('is_most_recent_record') }}"
+        description: Indicates whether a record is the most recent version of that record.
       - name: page_link
         description: Link for the page.
       - name: template_page_link
@@ -108,16 +189,34 @@ models:
 
   - name: stg_facebook_ads__basic_ad
     description: Each record represents the daily performance of an ad in Facebook.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - ad_id
+            - account_id
     columns:
       - name: ad_id
         description: The ID of the ad the report relates to.
+        tests:
+          - not_null
+      - name: ad_name
+        description: Name of the ad the report relates to.
+      - name: ad_set_name
+        description: Name of the ad set the report relates to.
       - name: date_day
         description: The date of the reported performance.
       - name: account_id
         description: The ID of the ad account that this ad belongs to.
+        tests:
+          - not_null
       - name: impressions
         description: The number of impressions the ad had on the given day.
       - name: clicks
         description: The number of clicks the ad had on the given day.
       - name: spend
         description: The spend on the ad in the given day.
+      - name: reach
+        description: The number of people who saw any content from your Page or about your Page. This metric is estimated.
+      - name: frequency
+        description: The average number of times each person saw your ad; it is calculated as impressions divided by reach.

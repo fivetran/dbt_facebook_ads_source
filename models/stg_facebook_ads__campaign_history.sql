@@ -1,9 +1,9 @@
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
 
 with base as (
 
     select * 
     from {{ ref('stg_facebook_ads__campaign_history_tmp') }}
-
 ),
 
 fields as (
@@ -19,15 +19,24 @@ fields as (
     from base
 ),
 
-fields_xf as (
+final as (
     
     select 
-        id as campaign_id,
-        account_id,
+        updated_time as updated_at,
+        created_time as created_at,
+        cast(account_id as {{ dbt_utils.type_bigint() }}) as account_id,
+        cast(id as {{ dbt_utils.type_bigint() }}) as campaign_id,
         name as campaign_name,
-        row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
+        start_time as start_at,
+        stop_time as end_at,
+        status,
+        daily_budget,
+        lifetime_budget,
+        budget_remaining,
+        row_number() over (partition by id order by updated_time desc) = 1 as is_most_recent_record
     from fields
 
 )
 
-select * from fields_xf
+select * 
+from final

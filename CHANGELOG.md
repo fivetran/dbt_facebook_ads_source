@@ -1,7 +1,7 @@
 # dbt_facebook_ads_source v0.5.0
 
 ## 🎉 Feature Enhancements 🎉
-PR (#25)[https://github.com/fivetran/dbt_facebook_ads_source/pull/22] includes the following changes:
+PR [#25](https://github.com/fivetran/dbt_facebook_ads_source/pull/22) includes the following changes:
 - Updates source models to include more potentially useful columns and respective definitions within `src.yml` and `stg.yml`.
 - Added passthrough functionality for `BASIC_AD` pre-built report using `facebook_ads__basic_ad_metrics` variable.`facebook_ads__basic_ad_metrics` example.
 ```yml

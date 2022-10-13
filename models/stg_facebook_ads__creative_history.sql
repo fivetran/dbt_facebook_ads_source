@@ -24,8 +24,8 @@ final as (
     select 
         _fivetran_id,
         _fivetran_synced,
-        cast(id as {{ dbt_utils.type_bigint() }}) as creative_id,
-        cast(account_id as {{ dbt_utils.type_bigint() }}) as account_id,
+        cast(id as {{ dbt.type_bigint() }}) as creative_id,
+        cast(account_id as {{ dbt.type_bigint() }}) as account_id,
         name as creative_name,
         page_link,
         template_page_link,

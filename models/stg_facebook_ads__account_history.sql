@@ -22,7 +22,7 @@ fields as (
 final as (
     
     select 
-        cast(id as {{ dbt_utils.type_bigint() }}) as account_id,
+        cast(id as {{ dbt.type_bigint() }}) as account_id,
         _fivetran_synced,
         name as account_name,
         account_status,

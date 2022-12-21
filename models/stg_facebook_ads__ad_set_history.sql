@@ -23,10 +23,10 @@ final as (
     
     select 
         updated_time as updated_at,
-        cast(id as {{ dbt_utils.type_bigint() }}) as ad_set_id,
+        cast(id as {{ dbt.type_bigint() }}) as ad_set_id,
         name as ad_set_name,
-        cast(account_id as {{ dbt_utils.type_bigint() }}) as account_id,
-        cast(campaign_id as {{ dbt_utils.type_bigint() }}) as campaign_id,
+        cast(account_id as {{ dbt.type_bigint() }}) as account_id,
+        cast(campaign_id as {{ dbt.type_bigint() }}) as campaign_id,
         start_time as start_at,
         end_time as end_at,
         bid_strategy,

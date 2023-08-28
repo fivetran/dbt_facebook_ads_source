@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
 
 with base as (
@@ -16,12 +18,19 @@ fields as (
             )
         }}
         
+    
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='facebook_ads_union_schemas', 
+            union_database_variable='facebook_ads_union_databases') 
+        }}
+
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
+        source_relation, 
         _fivetran_id,
         _fivetran_synced,
         cast(id as {{ dbt.type_bigint() }}) as creative_id,
@@ -40,7 +49,7 @@ final as (
         template_app_link_spec_ipad,
         template_app_link_spec_android,
         template_app_link_spec_iphone,
-        row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
+        row_number() over (partition by source_relation, id order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
 )
 

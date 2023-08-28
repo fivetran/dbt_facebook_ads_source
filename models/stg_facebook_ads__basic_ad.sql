@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
 
 with base as (
@@ -16,12 +18,19 @@ fields as (
             )
         }}
         
+    
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='facebook_ads_union_schemas', 
+            union_database_variable='facebook_ads_union_databases') 
+        }}
+
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
+        source_relation, 
         cast(ad_id as {{ dbt.type_bigint() }}) as ad_id,
         ad_name,
         adset_name as ad_set_name,

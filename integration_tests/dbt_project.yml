@@ -1,10 +1,10 @@
-name: 'facebook_ads_source_integration_tests'
+name: 'facebook_ads_source_integration_tests_2'
 version: '0.7.0'
 profile: 'integration_tests'
 config-version: 2
 
 vars:
-  facebook_ads_schema: facebook_ads_source_integration_tests
+  facebook_ads_schema: facebook_ads_source_integration_tests_2
   facebook_ads_source:
     facebook_ads_account_history_identifier: "facebook_ads_account_history_data"
     facebook_ads_ad_history_identifier: "facebook_ads_ad_history_data"
@@ -14,7 +14,7 @@ vars:
     facebook_ads_creative_history_identifier: "facebook_ads_creative_history_data"
 
 seeds:
-  facebook_ads_source_integration_tests:
+  facebook_ads_source_integration_tests_2:
     +column_types:
       id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"
       account_id: "{{ 'int64' if target.type == 'bigquery' else 'bigint' }}"

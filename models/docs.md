@@ -9,6 +9,7 @@ Boolean representing whether a record is the most recent version of that record.
 {% docs updated_time %}
 The timestamp of the last update of a record.
 {% enddocs %}
+
 {% docs source_relation %}
 The source of the record if the unioning functionality is being used. If not this field will be empty.
 {% enddocs %}

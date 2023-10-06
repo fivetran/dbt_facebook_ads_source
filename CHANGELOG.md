@@ -1,7 +1,7 @@
 # dbt_facebook_ads_source v0.7.0
 [PR #28](https://github.com/fivetran/dbt_facebook_ads_source/pull/28) includes the following updates:
 ## Feature update 🎉
-- Unioning capability! This adds the ability to union source data from multiple facebook_ads connectors. Refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source/blob/main/README.md) for more details.
+- Unioning capability! This adds the ability to union source data from multiple facebook_ads connectors. Refer to the [Union Multiple Connectors README section](https://github.com/fivetran/dbt_facebook_ads_source/blob/main/README.md#union-multiple-connectors) for more details.
 
 ## Under the hood 🚘
 - Updated tmp models to union source data using the `fivetran_utils.union_data` macro. 

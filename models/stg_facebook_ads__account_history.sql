@@ -16,12 +16,19 @@ fields as (
             )
         }}
         
+    
+        {{ fivetran_utils.source_relation(
+            union_schema_variable='facebook_ads_union_schemas', 
+            union_database_variable='facebook_ads_union_databases') 
+        }}
+
     from base
 ),
 
 final as (
-    
-    select 
+
+    select
+        source_relation, 
         cast(id as {{ dbt.type_bigint() }}) as account_id,
         _fivetran_synced,
         name as account_name,
@@ -30,7 +37,7 @@ final as (
         created_time as created_at,
         currency,
         timezone_name,
-        row_number() over (partition by id order by _fivetran_synced desc) = 1 as is_most_recent_record
+        row_number() over (partition by source_relation, id order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
 
 )

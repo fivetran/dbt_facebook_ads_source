@@ -6,9 +6,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - account_id
             - _fivetran_synced
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: account_id
         description: The ID of the ad account.
         tests:
@@ -37,9 +40,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - ad_id
             - updated_at
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: ad_id
         description: The ID of this ad.
         tests:
@@ -66,9 +72,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - ad_set_id
             - updated_at
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: ad_set_id
         description: The ID of the ad set.
         tests:
@@ -103,9 +112,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - campaign_id
             - updated_at
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: campaign_id
         description: The ID of the campaign.
         tests:
@@ -140,9 +152,12 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - creative_id
             - _fivetran_synced
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: _fivetran_id
         description: Unique record identifier
       - name: _fivetran_synced
@@ -192,10 +207,13 @@ models:
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - ad_id
             - account_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: ad_id
         description: The ID of the ad the report relates to.
         tests:

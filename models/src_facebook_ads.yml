@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: facebook_ads
+  - name: facebook_ads # This source will only be used if you are using a single facebook_ads source connector. If multiple sources are being unioned, their tables will be directly referenced via adapter.get_relation.
     schema: "{{ var('facebook_ads_schema', 'facebook_ads') }}"
     database: "{% if target.type != 'spark' %}{{ var('facebook_ads_database', target.database) }}{% endif %}"
     

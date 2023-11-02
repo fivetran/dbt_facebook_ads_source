@@ -1,8 +1,9 @@
 # dbt_facebook_ads_source v0.7.1
 
-[PR #]() includes the following udpates:
+[PR #31](https://github.com/fivetran/dbt_facebook_ads_source/pull/31) includes the following updates:
 ## Documentation Updates
 - The prerequisite steps for generating the `basic_ad` pre-built report have been modified to reflect the current state of the Facebook Ads connector.
+- Adds the [DECISIONLOG](DECISIONLOG.md) to clarify why there exist differences among aggregations across different grains.
 
 # dbt_facebook_ads_source v0.7.0
 [PR #28](https://github.com/fivetran/dbt_facebook_ads_source/pull/28) includes the following updates:

@@ -5,6 +5,84 @@ on:
 
 jobs:
   auto_assign_reviewer:
-    if: github.event.review.state == 'approved'
-    uses: fivetran/dbt_package_automations/.github/workflows/add-2nd-reviewer.yml@main
-    secrets: inherit
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check if PR needs second reviewer
+        id: check_needs_second_reviewer
+        run: |
+          # Get the PR Number
+          PR_NUMBER=$(jq -r ".pull_request.number" "$GITHUB_EVENT_PATH")
+          echo "PR Number: $PR_NUMBER"
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+          # Get list of current reviewers 
+          REVIEWERS_COUNT=$(curl -s -H \
+            -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/requested_reviewers" | jq '.users | length')
+          echo "No. of Requested Reviewers: $REVIEWERS_COUNT"
+
+          # Determine if two reviewers already exist
+          if [[ "$REVIEWERS_COUNT" -gt 1 ]]; then
+            NEEDS_SECOND_REVIEWER="false"
+            echo "2nd Reviewer already assigned."
+            exit 1  # This will cause the job to fail and skip subsequent steps.
+
+          else
+            NEEDS_SECOND_REVIEWER="true"
+          fi
+
+          echo "Adding 2nd Reviewer: $NEEDS_SECOND_REVIEWER"
+          echo "needs_second_reviewer=$NEEDS_SECOND_REVIEWER" >> $GITHUB_OUTPUT
+
+      - name: Check Related Repository PR Reviewers
+        id: check_related_repository
+        run: |
+          # Get the current repository name
+          CURRENT_REPO_NAME="${{ github.repository }}"
+          
+          # Check if the current repository name contains 'source'
+          if [[ $CURRENT_REPO_NAME == *source* ]]; then
+            # If 'source' is in the name, remove it from the related repository name
+            RELATED_REPO=$(echo "$CURRENT_REPO_NAME" | sed 's/_source//')
+          else
+            # If 'source' is not in the name, add it to the related repository name
+            RELATED_REPO="${CURRENT_REPO_NAME}_source"
+          fi
+
+          echo "Related Repository: $RELATED_REPO"
+          echo "related_repo=$RELATED_REPO" >> $GITHUB_OUTPUT
+
+          # Calculate the start date for the past week (7 days ago).
+          START_DATE=$(date -I -d "7 days ago")
+
+          # Make an API call to retrieve approved PRs from the related repository in the past week.
+          PR_INFO=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$RELATED_REPO/pulls?state=open&sort=updated&direction=desc&since=$START_DATE" | \
+            jq "map(select(.requested_reviewers | length >= 2)) | .[0]")
+
+          if [[ -n "$PR_INFO" ]]; then
+            SECOND_REVIEWER=$(echo "$PR_INFO" | jq -r '.requested_reviewers[1].login')
+          else
+            SECOND_REVIEWER="dbt"
+          fi
+
+          echo "2nd Reviewer set as: $SECOND_REVIEWER"
+          echo "second_reviewer=$SECOND_REVIEWER" >> $GITHUB_OUTPUT
+
+      - name: Assign Second Reviewer
+        if: steps.check_needs_second_reviewer.outputs.needs_second_reviewer == 'true'
+        run: |
+          PR_NUMBER=${{ steps.check_needs_second_reviewer.outputs.pr_number }}
+          SECOND_REVIEWER={{ steps.check_needs_second_reviewer.outputs.second_reviewer }}
+          RESPONSE=$(curl -L \
+            -X POST \
+            -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/requested_reviewers \
+            -d "{\"team_reviewers\":[\"$SECOND_REVIEWER\"]}"
+            )
+          echo "$RESPONSE"

@@ -1,3 +1,9 @@
+# dbt_facebook_ads_source v0.7.2
+[PR #33](https://github.com/fivetran/dbt_facebook_ads_source/pull/33) includes the following updates:
+
+## 🧪 Test Updates 🧪
+- Updated `stg_facebook_ads__creative_history` test in `stg_facebook_ads.yml` to test uniqueness on identifier `_fivetran_id`, since there are rare cases where `_fivetran_synced` and `creative_id` could hold the same value. 
+
 # dbt_facebook_ads_source v0.7.1
 
 [PR #31](https://github.com/fivetran/dbt_facebook_ads_source/pull/31) includes the following updates:

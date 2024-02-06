@@ -153,8 +153,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - source_relation
-            - creative_id
-            - _fivetran_synced
+            - _fivetran_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"

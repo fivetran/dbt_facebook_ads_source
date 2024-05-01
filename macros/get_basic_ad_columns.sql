@@ -13,6 +13,11 @@
     {"name": "frequency", "datatype": dbt.type_float()}
 ] %}
 
+{# 
+    Reach and Frequency are not included in downstream models by default, though they are included in the staging model.
+    The below ensures that users can add Reach and Frequency to downstream models with the `facebook_ads__basic_ad_passthrough_metrics` variable
+    while avoiding duplicate column errors.
+ #}
 {% set unique_passthrough = [] %}
 {% for field in var('facebook_ads__basic_ad_passthrough_metrics') %}
     {% if (field.alias if field.alias else field.name)|lower not in ('reach', 'frequency') %}

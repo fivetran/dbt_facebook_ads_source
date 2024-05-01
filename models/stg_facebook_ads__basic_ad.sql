@@ -36,9 +36,24 @@ final as (
         cast(account_id as {{ dbt.type_bigint() }}) as account_id,
         impressions,
         coalesce(inline_link_clicks,0) as clicks,
-        spend,
-        reach,
-        frequency
+        spend
+
+        {%- set check = [] %}
+        {%- for field in var('facebook_ads__basic_ad_passthrough_metrics') -%}
+            {%- if (field.alias if field.alias else field.name)|lower == 'reach' %}
+                {% do check.append('reach') %}
+            {% endif -%}
+            {%- if (field.alias if field.alias else field.name)|lower == 'frequency' %}
+                {% do check.append('frequency') %}
+            {% endif -%}
+        {% endfor -%}
+
+        {% if 'reach' not in check %}
+        , reach
+        {% endif %}
+        {% if 'frequency' not in check %}
+        , frequency
+        {%- endif %}
 
         {{ fivetran_utils.fill_pass_through_columns('facebook_ads__basic_ad_passthrough_metrics') }}
     from fields

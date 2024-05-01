@@ -13,7 +13,14 @@
     {"name": "frequency", "datatype": dbt.type_float()}
 ] %}
 
-{{ fivetran_utils.add_pass_through_columns(columns, var('facebook_ads__basic_ad_passthrough_metrics')) }}
+{% set unique_passthrough = [] %}
+{% for field in var('facebook_ads__basic_ad_passthrough_metrics') %}
+    {% if (field.alias if field.alias else field.name)|lower not in ('reach', 'frequency') %}
+        {% do unique_passthrough.append({"name": field.name, "alias": field.alias}) %}
+    {% endif %}
+{% endfor %}
+
+{{ fivetran_utils.add_pass_through_columns(columns, unique_passthrough) }}
 
 {{ return(columns) }}
 

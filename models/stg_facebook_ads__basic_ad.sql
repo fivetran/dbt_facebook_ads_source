@@ -45,20 +45,17 @@ final as (
         #}
         {%- set check = [] %}
         {%- for field in var('facebook_ads__basic_ad_passthrough_metrics') -%}
-            {%- if (field.alias if field.alias else field.name)|lower == 'reach' %}
-                {% do check.append('reach') %}
-            {% endif -%}
-            {%- if (field.alias if field.alias else field.name)|lower == 'frequency' %}
-                {% do check.append('frequency') %}
-            {% endif -%}
-        {% endfor -%}
+            {%- set field_name = field.alias|default(field.name)|lower %}
+            {% if field_name in ['reach', 'frequency'] %}
+                {% do check.append(field_name) %}
+            {% endif %}
+        {%- endfor %}
 
-        {% if 'reach' not in check %}
-        , reach
-        {% endif %}
-        {% if 'frequency' not in check %}
-        , frequency
-        {%- endif %}
+        {%- for metric in ['reach', 'frequency'] -%}
+            {% if metric not in check %}
+                , {{ metric }}
+            {% endif %}
+        {%- endfor %}
 
         {{ fivetran_utils.fill_pass_through_columns('facebook_ads__basic_ad_passthrough_metrics') }}
     from fields

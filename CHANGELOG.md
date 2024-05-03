@@ -2,7 +2,7 @@
 [PR #35](https://github.com/fivetran/dbt_facebook_ads_source/pull/35) includes the following updates:
 
 ## Bug Fixes
-- Resolved the "duplicate column" error that would arise when the `facebook_ads__basic_ad_passthrough_metrics` variable included `reach` or `frequency`. `Reach` and `frequency` are included by default in the `stg_facebook_ads__basic_ad` model but will only persist to downstream transform models if specified in the `facebook_ads__basic_ad_passthrough_metrics` variable.
+- Resolved the "duplicate column" error that would arise when the `facebook_ads__basic_ad_passthrough_metrics` variable included `reach` or `frequency`. `Reach` and `frequency` were included by default in the `stg_facebook_ads__basic_ad` model but will now only persist to downstream transform models if specified in the `facebook_ads__basic_ad_passthrough_metrics` variable.
 
 ## Under the Hood
 - Updated the maintainer PR template to our most up-to-date standards.

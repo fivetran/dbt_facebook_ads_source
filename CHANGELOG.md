@@ -3,7 +3,6 @@
 
 ## Bug Fixes
 - Resolved the "duplicate column" error that would arise when the `facebook_ads__basic_ad_passthrough_metrics` variable included `reach` or `frequency`. `Reach` and `frequency` were included by default in the `stg_facebook_ads__basic_ad` model but will now only persist to downstream transform models if specified in the `facebook_ads__basic_ad_passthrough_metrics` variable.
-  - This error is now avoided by first [checking](https://github.com/fivetran/dbt_facebook_ads_source/blob/main/models/stg_facebook_ads__basic_ad.sql#L41-L45) if `reach` and `frequency` are included in `facebook_ads__basic_ad_passthrough_metrics` and only selecting the columns once if so.
 
 ## Under the Hood
 - Updated the maintainer PR template to our most up-to-date standards.
@@ -30,6 +29,10 @@
 - Updated tmp models to union source data using the `fivetran_utils.union_data` macro. 
 - To distinguish which source each field comes from, added `source_relation` column in each staging model and applied the `fivetran_utils.source_relation` macro.
 - Updated tests to account for the new `source_relation` column.
+
+# dbt_facebook_ads_source v0.UPDATE.UPDATE
+
+## Under the Hood:
 - Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
 - Updated the pull request [templates](/.github).
 

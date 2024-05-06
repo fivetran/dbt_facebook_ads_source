@@ -36,9 +36,26 @@ final as (
         cast(account_id as {{ dbt.type_bigint() }}) as account_id,
         impressions,
         coalesce(inline_link_clicks,0) as clicks,
-        spend,
-        reach,
-        frequency
+        spend
+
+        {# 
+            Reach and Frequency are not included in downstream models by default, though they are included in the staging model.
+            The below ensures that users can add Reach and Frequency to downstream models with the `facebook_ads__basic_ad_passthrough_metrics` variable
+            while avoiding duplicate column errors.
+        #}
+        {%- set check = [] %}
+        {%- for field in var('facebook_ads__basic_ad_passthrough_metrics') -%}
+            {%- set field_name = field.alias|default(field.name)|lower %}
+            {% if field_name in ['reach', 'frequency'] %}
+                {% do check.append(field_name) %}
+            {% endif %}
+        {%- endfor %}
+
+        {%- for metric in ['reach', 'frequency'] -%}
+            {% if metric not in check %}
+                , {{ metric }}
+            {% endif %}
+        {%- endfor %}
 
         {{ fivetran_utils.fill_pass_through_columns('facebook_ads__basic_ad_passthrough_metrics') }}
     from fields

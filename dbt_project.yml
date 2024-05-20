@@ -18,3 +18,4 @@ vars:
     campaign_history: "{{ source('facebook_ads','campaign_history') }}"
     creative_history: "{{ source('facebook_ads','creative_history') }}"
   facebook_ads__basic_ad_passthrough_metrics: []
+  facebook_ads__basic_ad_action_passthrough_metrics: ['inline', '_1_d_view', '_7_d_click', '_28_d_click']

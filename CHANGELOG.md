@@ -1,3 +1,7 @@
+# dbt_facebook_ads_source v0.8.0
+
+TODO - adding `basic_ad_actions` for conversion data
+
 # dbt_facebook_ads_source v0.7.3
 [PR #35](https://github.com/fivetran/dbt_facebook_ads_source/pull/35) includes the following updates:
 

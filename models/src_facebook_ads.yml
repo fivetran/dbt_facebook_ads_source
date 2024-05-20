@@ -114,6 +114,33 @@ sources:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
 
+      - name: basic_ad_actions
+        description: Each record represents the daily conversion performance of an ad in Facebook. This is the prebuilt `basic_ad` report broken down by `action_type`.
+        identifier: "{{ var('facebook_ads_basic_ad_actions_identifier', 'basic_ad_actions') }}"
+        columns:
+          - name: _1_d_view
+            description: Conversion metric value using an attribution window of "1 day after viewing the ad".
+          - name: _28_d_click
+            description: Conversion metric value using an attribution window of "28 days after clicking the ad".
+          - name: _fivetran_id
+            description: TBD ?? Only 1 distinct value in our data 
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: action_type
+            description: >
+              The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.
+              Actions prepended by app_custom_event come from mobile app events and actions prepended by offsite_conversion come from the Facebook Pixel.
+          - name: ad_id
+            description: The ID of the ad the report relates to.
+          - name: date
+            description: The date of the reported performance.
+          - name: index
+            description: Index reflecting the `action_type` tracked for this ad on this day. Column of not much consequence. 
+          - name: inline
+            description: Conversion metric value using the attribution window that occurs on the ad itself.
+          - name: value
+            description: Conversion metric value using the default attribution window.
+
       - name: campaign_history
         description: Each record in this table reflects a version of a Facebook campaign.
         identifier: "{{ var('facebook_ads_campaign_history_identifier', 'campaign_history') }}"

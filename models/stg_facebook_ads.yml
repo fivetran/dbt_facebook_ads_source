@@ -252,8 +252,8 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: value_1d_view
         description: Conversion metric value using an attribution window of "1 day after viewing the ad".
-      - name: value_28d_click
-        description: Conversion metric value using an attribution window of "28 days after clicking the ad".
+      - name: value_7d_click
+        description: Conversion metric value using an attribution window of "7 days after clicking the ad".
       - name: action_type
         description: >
           The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.

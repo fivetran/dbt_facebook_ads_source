@@ -31,7 +31,7 @@ final as (
         coalesce(value, 0) as value,
         coalesce(inline, 0) as value_inline,
         coalesce(_1_d_view, 0) as value_1d_view,
-        coalesce(_28_d_click, 0) as value_28d_click
+        coalesce(_7_d_click, 0) as value_7d_click
 
         {# _fivetran_id, #}
         {# _fivetran_synced, #}

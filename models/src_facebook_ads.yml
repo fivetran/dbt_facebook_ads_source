@@ -120,8 +120,8 @@ sources:
         columns:
           - name: _1_d_view
             description: Conversion metric value using an attribution window of "1 day after viewing the ad".
-          - name: _28_d_click
-            description: Conversion metric value using an attribution window of "28 days after clicking the ad".
+          - name: _7_d_click
+            description: Conversion metric value using an attribution window of "7 days after clicking the ad".
           - name: _fivetran_id
             description: TBD ?? Only 1 distinct value in our data 
           - name: _fivetran_synced

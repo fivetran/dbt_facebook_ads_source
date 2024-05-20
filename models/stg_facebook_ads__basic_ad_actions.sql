@@ -25,10 +25,10 @@ final as (
     
     select 
         source_relation, 
-        action_type,
+        lower(action_type) as action_type,
         cast(ad_id as {{ dbt.type_bigint() }}) as ad_id,
         date as date_day,
-        coalesce(value, 0) as value
+        coalesce(value, 0) as conversion_value
         {# ,
         coalesce(inline, 0) as value_inline,
         coalesce(_1_d_view, 0) as value_1d_view,

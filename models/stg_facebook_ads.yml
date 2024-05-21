@@ -239,7 +239,9 @@ models:
         description: The average number of times each person saw your ad; it is calculated as impressions divided by reach.
 
   - name: stg_facebook_ads__basic_ad_actions
-    description: Each record represents the daily conversion performance of an ad in Facebook. This is the prebuilt `basic_ad` report broken down by `action_type`.
+    description: >
+      Each record represents the daily conversion performance of an ad in Facebook. This is the prebuilt `basic_ad` report broken down by `action_type`.
+      Include more conversion value metrics by configuring the `facebook_ads__basic_ad_actions_passthrough_metrics` variable.
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -250,10 +252,6 @@ models:
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
-      - name: value_1d_view
-        description: Conversion metric value using an attribution window of "1 day after viewing the ad".
-      - name: value_7d_click
-        description: Conversion metric value using an attribution window of "7 days after clicking the ad".
       - name: action_type
         description: >
           The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.
@@ -262,7 +260,11 @@ models:
         description: The ID of the ad the report relates to.
       - name: date_day
         description: The date of the reported performance.
-      - name: value_inline
-        description: Conversion metric value using the attribution window that occurs on the ad itself.
-      - name: value
+      - name: conversion_value
         description: Conversion metric value using the default attribution window.
+      # - name: value_inline
+      #   description: Conversion metric value using the attribution window that occurs on the ad itself.
+      # - name: value_1d_view
+      #   description: Conversion metric value using an attribution window of "1 day after viewing the ad".
+      # - name: value_7d_click
+      #   description: Conversion metric value using an attribution window of "7 days after clicking the ad".

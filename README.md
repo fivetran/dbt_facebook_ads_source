@@ -48,7 +48,7 @@ Include the following facebook_ads_source package version in your `packages.yml`
 ```yaml
 packages:
   - package: fivetran/facebook_ads_source
-    version: [">=0.7.0", "<0.8.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.8.0", "<0.9.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 ## Step 3: Define database and schema variables
 By default, this package runs using your destination and the `facebook_ads` schema. If this is not where your Facebook Ads data is (for example, if your facebook_ads schema is named `facebook_ads_fivetran`), add the following configuration to your root `dbt_project.yml` file:
@@ -73,17 +73,22 @@ Please be aware that the native `source.yml` connection set up in the package wi
 To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
 
 ### Passing Through Additional Metrics
-By default, this package will select `clicks`, `impressions`, and `cost` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) if desired, but not required. Use the below format for declaring the respective pass-through variables:
+By default, this package will select `clicks`, `impressions`, `cost`, and conversion `value` (using the default attribution window) from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) if desired, but not required. Use the below format for declaring the respective pass-through variables:
 
->**Note** Please ensure you exercised due diligence when adding metrics to these models. The metrics added by default (taps, impressions, and spend) have been vetted by the Fivetran team maintaining this package for accuracy. There are metrics included within the source reports, for example metric averages, which may be inaccurately represented at the grain for reports created in this package. You will want to ensure whichever metrics you pass through are indeed appropriate to aggregate at the respective reporting levels provided in this package.
+>**Note** Please ensure you exercised due diligence when adding metrics to these models. The metrics added by default (taps, impressions, spend, and default-attribution window conversion values) have been vetted by the Fivetran team maintaining this package for accuracy. There are metrics included within the source reports, for example metric averages, which may be inaccurately represented at the grain for reports created in this package. You will want to ensure whichever metrics you pass through are indeed appropriate to aggregate at the respective reporting levels provided in this package.
 
 ```yml
 vars:
-    facebook_ads__basic_ad_passthrough_metrics: 
+    facebook_ads__basic_ad_passthrough_metrics: # add metrics found in BASIC_AD
       - name: "new_custom_field"
         alias: "custom_field"
       - name: "another_one"
+    facebook_ads__basic_ad_actions_passthrough_metrics: # add conversion metrics found in BASIC_AD_ACTIONS
+      - name: "_7_d_click"
+        alias: "conversion_value_7d_click"
+      - name: "_1_d_view"
 ```
+
 ### Change the build schema
 By default, this package builds the Facebook Ads staging models within a schema titled (`<target_schema>` + `_facebook_ads_source`) in your destination. If this is not where you would like your Facebook Ads staging data to be written to, add the following configuration to your root `dbt_project.yml` file:
 

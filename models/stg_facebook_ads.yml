@@ -66,7 +66,9 @@ models:
         description: "{{ doc('updated_time') }}"
         tests:
           - not_null
-
+      - name: conversion_domain
+        description: The domain you've configured the ad to convert to.
+            
   - name: stg_facebook_ads__ad_set_history
     description: Each record in this table reflects a Facebook ad set.
     tests:
@@ -106,6 +108,8 @@ models:
         description: Remaining budget of ad set.
       - name: status
         description: Status values are - 'ACTIVE', 'PAUSED', 'DELETED', 'ARCHIVED'.
+      - name: optimization_goal
+        description: The optimization goal this ad set is using. Possible values defined [here](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign/#fields).
 
   - name: stg_facebook_ads__campaign_history
     description: Each record in this table reflects a Facebook campaign.

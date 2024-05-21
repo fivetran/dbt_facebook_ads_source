@@ -8,6 +8,8 @@
 
 ## Feature Updates
 - With the inclusion of the `basic_ad_actions` source table, creates a `facebook_ads__basic_ad_actions_passthrough_metrics` variable to pass through additional conversion value metrics to downstream models. By default, the package includes only the conversion value calculated using the default attribution window, but your report may include calculations using the other windows defined [here](https://developers.facebook.com/docs/marketing-api/reference/ads-action-stats/). See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details on how to use the new var.
+- Adds `optimization_goal` field to `stg_facebook_ads__ad_set_history` model. This is defined as the optimization goal this ad set is using, possible values of which are defined [here](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign/#fields).
+- Adds `conversion_domain` field to `stg_facebook_ads__ad_history` model. This is defined as the domain you've configured the ad to convert to.
 
 ## Documentation
 - Documents the ability to transform metrics provided to the `facebook_ads__basic_ad_passthrough_metrics` variable. See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details.

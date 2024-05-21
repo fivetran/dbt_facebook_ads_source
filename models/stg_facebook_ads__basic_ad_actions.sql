@@ -29,15 +29,26 @@ final as (
         cast(ad_id as {{ dbt.type_bigint() }}) as ad_id,
         date as date_day,
         coalesce(value, 0) as conversion_value
-        {# ,
+        {# just use default by default
         coalesce(inline, 0) as value_inline,
         coalesce(_1_d_view, 0) as value_1d_view,
-        coalesce(_7_d_click, 0) as value_7d_click #}
+        coalesce(_7_d_click, 0) as value_7d_click 
+        unnecessary - _fivetran_id, _fivetran_synced,
+        #}
 
-        {# _fivetran_id, #}
-        {# _fivetran_synced, #}
-        {{ fivetran_utils.fill_pass_through_columns('facebook_ads__basic_ad_action_passthrough_metrics') }} 
-        -- ie inline, _1_d_view, _7_d_click
+        {# 
+            Adapted from fivetran_utils.fill_pass_through_columns() macro. Ensures that downstream summations work if a connector schema is missing one of your
+            facebook_ads__basic_ad_actions_passthrough_metrics
+        #}
+        {% if var('facebook_ads__basic_ad_actions_passthrough_metrics') %}
+            {% for field in var('facebook_ads__basic_ad_actions_passthrough_metrics') %}
+                {% if field.transform_sql %}
+                    , coalesce(cast({{ field.transform_sql }} as {{ dbt.type_float() }}), 0) as {{ field.alias if field.alias else field.name }}
+                {% else %}
+                    , coalesce(cast({{ field.alias if field.alias else field.name }} as {{ dbt.type_float() }}), 0) as {{ field.alias if field.alias else field.name }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
 
     from fields
 )

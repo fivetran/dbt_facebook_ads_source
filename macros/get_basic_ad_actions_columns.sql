@@ -10,7 +10,7 @@
     {"name": "value", "datatype": dbt.type_float()}
 ] %}
 
-{{ fivetran_utils.add_pass_through_columns(columns, var('facebook_ads__basic_ad_action_passthrough_metrics')) }}
+{{ fivetran_utils.add_pass_through_columns(columns, var('facebook_ads__basic_ad_actions_passthrough_metrics')) }}
 
 {{ return(columns) }}
 

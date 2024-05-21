@@ -1,8 +1,16 @@
 # dbt_facebook_ads_source v0.8.0
 
-TODO - adding `basic_ad_actions` for conversion data
+[PR #36](https://github.com/fivetran/dbt_facebook_ads_source/pull/36) includes the following updates:
 
-BREAKING CHANGE due to new required source table (though it is a child of an already present table)
+## 🚨 Breaking Changes 🚨
+- Incorporates the `basic_ad_actions` pre-built report in order to grab conversion data. `basic_ad_actions` is a child table of the already-required `basic_ad` report, broken down by `action_type`. 
+  - Addition of the new `stg_facebook_ads__basic_ad_actions` (and its `_tmp` counterpart) staging model. Given that this is a schema change for the package, this a breaking change.
+
+## Feature Updates
+- With the inclusion of the `basic_ad_actions` source table, creates a `facebook_ads__basic_ad_actions_passthrough_metrics` variable to pass through additional conversion value metrics to downstream models. By default, the package includes only the conversion value calculated using the default attribution window, but your report may include calculations using the other windows defined [here](https://developers.facebook.com/docs/marketing-api/reference/ads-action-stats/). See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details on how to use the new var.
+
+## Documentation
+- Documents the ability to transform metrics provided to the `facebook_ads__basic_ad_passthrough_metrics` variable. See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details.
 
 # dbt_facebook_ads_source v0.7.3
 [PR #35](https://github.com/fivetran/dbt_facebook_ads_source/pull/35) includes the following updates:

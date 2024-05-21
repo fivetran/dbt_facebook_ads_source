@@ -37,8 +37,8 @@ final as (
         #}
 
         {# 
-            Adapted from fivetran_utils.fill_pass_through_columns() macro. Ensures that downstream summations work if a connector schema is missing one of your
-            facebook_ads__basic_ad_actions_passthrough_metrics
+            Adapted from fivetran_utils.fill_pass_through_columns() macro. 
+            Ensures that downstream summations work if a connector schema is missing one of your facebook_ads__basic_ad_actions_passthrough_metrics
         #}
         {% if var('facebook_ads__basic_ad_actions_passthrough_metrics') %}
             {% for field in var('facebook_ads__basic_ad_actions_passthrough_metrics') %}

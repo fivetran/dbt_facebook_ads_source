@@ -36,7 +36,9 @@ final as (
         cast(ad_set_id as {{ dbt.type_bigint() }}) as ad_set_id,   
         cast(campaign_id as {{ dbt.type_bigint() }}) as campaign_id,
         cast(creative_id as {{ dbt.type_bigint() }}) as creative_id,
-        row_number() over (partition by source_relation, id order by updated_time desc) = 1 as is_most_recent_record
+        case when id is null and updated_time is null 
+            then row_number() over (partition by source_relation)
+        else row_number() over (partition by source_relation, id order by updated_time desc) end = 1 as is_most_recent_record
     from fields
 )
 

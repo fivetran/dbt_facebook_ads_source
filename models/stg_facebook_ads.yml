@@ -266,9 +266,3 @@ models:
         description: The date of the reported performance.
       - name: conversion_value
         description: Conversion metric value using the default attribution window.
-      # - name: value_inline
-      #   description: Conversion metric value using the attribution window that occurs on the ad itself.
-      # - name: value_1d_view
-      #   description: Conversion metric value using an attribution window of "1 day after viewing the ad".
-      # - name: value_7d_click
-      #   description: Conversion metric value using an attribution window of "7 days after clicking the ad".

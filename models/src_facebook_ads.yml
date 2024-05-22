@@ -123,13 +123,13 @@ sources:
         identifier: "{{ var('facebook_ads_basic_ad_actions_identifier', 'basic_ad_actions') }}"
         columns:
           - name: _1_d_view
-            description: Conversion metric value using an attribution window of "1 day after viewing the ad".
+            description: Conversion metric value using an attribution window of "1 day after viewing the ad". Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
           - name: _7_d_click
-            description: Conversion metric value using an attribution window of "7 days after clicking the ad".
+            description: Conversion metric value using an attribution window of "7 days after clicking the ad". Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
           - name: _28_d_click
-            description: Conversion metric value using an attribution window of "28 days after clicking the ad".
+            description: Conversion metric value using an attribution window of "28 days after clicking the ad". Deprecated by Facebook due to digital privacy initiatives. Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
           - name: _fivetran_id
-            description: TBD ?? Only 1 distinct value in our data 
+            description: Defunct field.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
           - name: action_type
@@ -143,7 +143,7 @@ sources:
           - name: index
             description: Index reflecting the `action_type` tracked for this ad on this day. Column of not much consequence. 
           - name: inline
-            description: Conversion metric value using the attribution window that occurs on the ad itself.
+            description: Conversion metric value using the attribution window that occurs on the ad itself. Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
           - name: value
             description: Conversion metric value using the default attribution window.
 

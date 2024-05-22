@@ -1,3 +1,9 @@
+# dbt_facebook_ads_source v0.7.4
+[PR #37](https://github.com/fivetran/dbt_facebook_ads_source/pull/37) includes the following updates:
+
+## Bug Fixes
+
+
 # dbt_facebook_ads_source v0.7.3
 [PR #35](https://github.com/fivetran/dbt_facebook_ads_source/pull/35) includes the following updates:
 

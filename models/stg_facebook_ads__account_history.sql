@@ -37,7 +37,10 @@ final as (
         created_time as created_at,
         currency,
         timezone_name,
-        row_number() over (partition by source_relation, id order by _fivetran_synced desc) = 1 as is_most_recent_record
+        case 
+            when id is null then row_number() over (partition by source_relation, id order by source_relation) = 1 
+            else row_number() over (partition by source_relation order by _fivetran_synced desc)
+            end = 1 as is_most_recent_record
     from fields
 
 )

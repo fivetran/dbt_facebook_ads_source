@@ -40,7 +40,7 @@ final as (
         {# case when id is null and _fivetran_synced is null 
             then row_number() over (partition by source_relation)
         else  #}
-        row_number() over (partition by source_relation, id order by _fivetran_synced desc) end = 1 as is_most_recent_record
+        row_number() over (partition by source_relation, id order by _fivetran_synced desc) = 1 as is_most_recent_record
     from fields
 
 )

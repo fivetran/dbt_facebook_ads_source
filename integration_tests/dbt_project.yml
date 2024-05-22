@@ -9,7 +9,7 @@ vars:
     - name: "frequency"
       alias: "fake_freq_name"
       
-  facebook_ads_schema: facebook_ads_source_tests
+  facebook_ads_schema: facebook_ads_source_integration_tests_2
   facebook_ads_source:
     facebook_ads_account_history_identifier: "facebook_ads_account_history_data"
     facebook_ads_ad_history_identifier: "facebook_ads_ad_history_data"

@@ -40,9 +40,10 @@ final as (
         daily_budget,
         budget_remaining,
         status,
-        case when id is null and updated_time is null
+        {# case when id is null and updated_time is null
             then row_number() over (partition by source_relation)
-        else row_number() over (partition by source_relation, id order by updated_time desc) end = 1 as is_most_recent_record
+        else  #}
+        row_number() over (partition by source_relation, id order by updated_time desc) end = 1 as is_most_recent_record
     from fields
 
 )

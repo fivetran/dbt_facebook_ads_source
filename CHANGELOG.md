@@ -14,6 +14,10 @@
 ## Documentation
 - Documents the ability to transform metrics provided to the `facebook_ads__basic_ad_passthrough_metrics` variable. See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details.
 
+## Contributors
+[Seer Interactive](https://www.seerinteractive.com/)
+<More to be added>
+
 # dbt_facebook_ads_source v0.7.3
 [PR #35](https://github.com/fivetran/dbt_facebook_ads_source/pull/35) includes the following updates:
 

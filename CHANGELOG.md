@@ -2,7 +2,7 @@
 [PR #37](https://github.com/fivetran/dbt_facebook_ads_source/pull/37) includes the following update:
 
 ## Bug Fixes
-- Updated partition logic in `*_history` staging models to acccount for null tables, which could cause `constant expressions are not supported in partition by clauses` errors in Redshift.
+- Updated partition logic in `*_history` staging models to account for null tables, which could cause `constant expressions are not supported in partition by clauses` errors in Redshift.
 
 # dbt_facebook_ads_source v0.7.3
 [PR #35](https://github.com/fivetran/dbt_facebook_ads_source/pull/35) includes the following updates:

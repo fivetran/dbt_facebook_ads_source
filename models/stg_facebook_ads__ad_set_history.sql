@@ -40,6 +40,7 @@ final as (
         daily_budget,
         budget_remaining,
         status,
+        optimization_goal,
         row_number() over (partition by source_relation, id order by updated_time desc) = 1 as is_most_recent_record
     from fields
 

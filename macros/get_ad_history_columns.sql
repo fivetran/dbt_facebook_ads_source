@@ -7,7 +7,8 @@
     {"name": "account_id", "datatype": dbt.type_int()},
     {"name": "ad_set_id", "datatype": dbt.type_int()},
     {"name": "campaign_id", "datatype": dbt.type_int()},
-    {"name": "creative_id", "datatype": dbt.type_int()}
+    {"name": "creative_id", "datatype": dbt.type_int()},
+    {"name": "conversion_domain", "datatype": dbt.type_string()}
 ] %}
 
 {{ return(columns) }}

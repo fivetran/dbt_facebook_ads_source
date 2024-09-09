@@ -3,6 +3,9 @@ version: '0.8.0'
 profile: 'integration_tests'
 config-version: 2
 
+models:
+  +schema: "facebook_ads_source_{{ var('directed_schema','dev') }}"
+  
 vars:
   facebook_ads__basic_ad_passthrough_metrics:
     - name: "reach"

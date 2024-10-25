@@ -28,7 +28,7 @@ final as (
         lower(action_type) as action_type,
         cast(ad_id as {{ dbt.type_bigint() }}) as ad_id,
         date as date_day,
-        cast(coalesce(value, 0) as {{ dbt.type_float() }}) as conversion_value
+        cast(coalesce(value, 0) as {{ dbt.type_float() }}) as conversions
         {# 
             Adapted from fivetran_utils.fill_pass_through_columns() macro. 
             Ensures that downstream summations work if a connector schema is missing one of your facebook_ads__basic_ad_actions_passthrough_metrics

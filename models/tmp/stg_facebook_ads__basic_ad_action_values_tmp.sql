@@ -1,3 +1,5 @@
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
+
 {{
     fivetran_utils.union_data(
         table_identifier='basic_ad_action_values', 

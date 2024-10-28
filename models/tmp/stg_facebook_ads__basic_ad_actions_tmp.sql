@@ -1,6 +1,8 @@
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True)) }}
+
 {{
     fivetran_utils.union_data(
-        table_identifier='basic_ad_actions' if var('facebook_ads__using_basic_ad_actions_report', true) else 'basic_ad_action_values_actions', 
+        table_identifier='basic_ad_actions', 
         database_variable='facebook_ads_database', 
         schema_variable='facebook_ads_schema', 
         default_database=target.database,

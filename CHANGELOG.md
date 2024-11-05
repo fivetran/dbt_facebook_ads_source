@@ -2,17 +2,18 @@
 
 [PR #36](https://github.com/fivetran/dbt_facebook_ads_source/pull/36) includes the following updates:
 
-## 🚨 Breaking Changes 🚨
-- Incorporates the `basic_ad_actions` pre-built report in order to grab conversion data. `basic_ad_actions` is a child table of the already-required `basic_ad` report, broken down by `action_type`. 
-  - Addition of the new `stg_facebook_ads__basic_ad_actions` (and its `_tmp` counterpart) staging model. Given that this is a schema change for the package, this a breaking change.
+## Breaking Changes 
+- Incorporates the `basic_ad_actions` and `basic_ad_action_values` pre-built reports in order to grab conversion data. They are bith child tables of the already-required `basic_ad` report, broken down by `action_type`. 
+  - Addition of the new `stg_facebook_ads__basic_ad_actions` and `stg_facebook_ads__basic_ad_action_values` (and their `_tmp` counterparts) staging models. Given that this is a schema change for the package, this a breaking change.
 
-## Feature Updates
-- With the inclusion of the `basic_ad_actions` source table, creates a `facebook_ads__basic_ad_actions_passthrough_metrics` variable to pass through additional conversion value metrics to downstream models. By default, the package includes only the conversion value calculated using the default attribution window, but your report may include calculations using the other windows defined [here](https://developers.facebook.com/docs/marketing-api/reference/ads-action-stats/). See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details on how to use the new variable.
+## Feature Updates: Conversion Metrics
+- With the inclusion of the `basic_ad_actions` and `basic_ad_action_values` source tables, creates a `facebook_ads__basic_ad_actions_passthrough_metrics` and `facebook_ads__basic_ad_action_values_passthrough_metrics` variables to pass through additional conversion value metrics to downstream models.
+  - By default, the package includes only the conversion value calculated using the default attribution window, but your report may include calculations using the other windows defined [here](https://developers.facebook.com/docs/marketing-api/reference/ads-action-stats/). See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details on how to use the new variables.
 - Adds `optimization_goal` field to `stg_facebook_ads__ad_set_history` model. This is defined as the optimization goal this ad set is using, possible values of which are defined [here](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign/#fields).
 - Adds `conversion_domain` field to `stg_facebook_ads__ad_history` model. This is defined as the domain you've configured the ad to convert to.
 
 ## Documentation
-- Documents the ability to transform metrics provided to the `facebook_ads__basic_ad_passthrough_metrics` variable. See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details.
+- Documents the ability to transform metrics provided to the new `facebook_ads__basic_ad_passthrough_metrics` and `facebook_ads__basic_ad_action_values_passthrough_metrics` variables. See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details.
 
 ## Contributors
 - [Seer Interactive](https://www.seerinteractive.com/?utm_campaign=Fivetran%20%7C%20Models&utm_source=Fivetran&utm_medium=Fivetran%20Documentation)

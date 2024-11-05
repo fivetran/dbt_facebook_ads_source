@@ -264,7 +264,7 @@ models:
         description: The ID of the ad the report relates to.
       - name: date_day
         description: The date of the reported performance.
-      - name: conversions_value
+      - name: conversions
         description: Conversion metric value using the default attribution window.
 
   - name: stg_facebook_ads__basic_ad_action_values

@@ -34,7 +34,7 @@ To use this dbt package, you must have the following:
     2. Search for `basic_ad`, `basic_ad_actions`, `basic_ad_action_values` and confirm they all selected/enabled.
     3. If not selected, do so and sync. If already selected you are ready to run the models!
 
- >**Note**: If you do not have your Facebook Ads connector [schema change settings](https://fivetran.com/docs/using-fivetran/features/data-blocking-column-hashing/config#configureschemachangesettingsforexistingconnectors) set to `Allow all`, it is very possible that you are missing `basic_ad_actions` or `basic_ad_action_values`. If you would like to surface conversion metrics in your Facebook and/or Ad Reporting models, please ensure these reports are syncing. Otherwise, the `conversions` and `conversions_value` fields will be `null`.
+ >**Note**: If you do not have your Facebook Ads connector [schema change settings](https://fivetran.com/docs/using-fivetran/features/data-blocking-column-hashing/config#configureschemachangesettingsforexistingconnectors) set to `Allow all`, it is possible that you are missing `basic_ad_actions` or `basic_ad_action_values`. If you would like to surface conversion metrics in your Facebook and/or Ad Reporting models, please ensure these reports are syncing. Otherwise, the `conversions` and `conversions_value` fields will be `null`.
 
 #### Databricks Dispatch Configuration
 If you are using a Databricks destination with this package you will need to add the below (or a variation of the below) dispatch configuration within your `dbt_project.yml`. This is required in order for the package to accurately search for macros within the `dbt-labs/spark_utils` then the `dbt-labs/dbt_utils` packages respectively.
@@ -89,6 +89,10 @@ vars:
         transform_sql: "coalesce(another_one, 0)" # reference the `name` here if you're not using an alias
       - name: "cpc" # only name is required
     facebook_ads__basic_ad_actions_passthrough_metrics: # add conversion metrics found in BASIC_AD_ACTIONS
+      - name: "_7_d_click"
+        alias: "conversion_value_7d_click"
+      - name: "inline"
+    facebook_ads__basic_ad_action_values_passthrough_metrics: # add conversion metrics found in BASIC_AD_ACTION_VALUES
       - name: "_7_d_click"
         alias: "conversion_value_7d_click"
       - name: "inline"

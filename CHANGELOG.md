@@ -3,7 +3,7 @@
 [PR #36](https://github.com/fivetran/dbt_facebook_ads_source/pull/36) includes the following updates:
 
 ## Breaking Changes 
-- Incorporates the `basic_ad_actions` and `basic_ad_action_values` pre-built reports in order to grab conversion data. They are bith child tables of the already-required `basic_ad` report, broken down by `action_type`. 
+- Incorporates the `basic_ad_actions` and `basic_ad_action_values` pre-built reports in order to grab conversion data. They are both child tables of the already-required `basic_ad` report, broken down by `action_type`. 
   - Addition of the new `stg_facebook_ads__basic_ad_actions` and `stg_facebook_ads__basic_ad_action_values` (and their `_tmp` counterparts) staging models. Given that this is a schema change for the package, this a breaking change.
 
 ## Feature Updates: Conversion Metrics

@@ -4,7 +4,7 @@
 
 ## Breaking Changes 
 - Incorporates the `basic_ad_actions` and `basic_ad_action_values` pre-built reports in order to grab conversion data. They are both child tables of the already-required `basic_ad` report, broken down by `action_type`. 
-  - Addition of the new `stg_facebook_ads__basic_ad_actions` and `stg_facebook_ads__basic_ad_action_values` (and their `_tmp` counterparts) staging models. Given that this is a schema change for the package, this a breaking change.
+  - Addition of the new `stg_facebook_ads__basic_ad_actions` and `stg_facebook_ads__basic_ad_action_values` (and their `_tmp` counterparts) staging models. Given that this is a schema change for the package, this is a breaking change.
 
 ## Feature Updates: Conversion Metrics
 - With the inclusion of the `basic_ad_actions` and `basic_ad_action_values` source tables, we have added the `facebook_ads__basic_ad_actions_passthrough_metrics` and `facebook_ads__basic_ad_action_values_passthrough_metrics` variables to pass through additional conversion value metrics to downstream models.

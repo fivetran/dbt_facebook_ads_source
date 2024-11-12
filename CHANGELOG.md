@@ -15,6 +15,9 @@
 ## Documentation
 - Documents the ability to transform metrics provided to the new `facebook_ads__basic_ad_passthrough_metrics` and `facebook_ads__basic_ad_action_values_passthrough_metrics` variables. See [README](https://github.com/fivetran/dbt_facebook_ads_source/tree/main?tab=readme-ov-file#passing-through-additional-metrics) for details.
 
+## Under the Hood
+- Creates `facebook_ads_fill_pass_through_columns` macro to make passthrough column logic in the new staging models DRYer.
+
 ## Contributors
 - [Seer Interactive](https://www.seerinteractive.com/?utm_campaign=Fivetran%20%7C%20Models&utm_source=Fivetran&utm_medium=Fivetran%20Documentation)
 

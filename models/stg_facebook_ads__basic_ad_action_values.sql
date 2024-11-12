@@ -30,19 +30,8 @@ final as (
         cast(ad_id as {{ dbt.type_bigint() }}) as ad_id,
         date as date_day,
         cast(coalesce(value, 0) as {{ dbt.type_float() }}) as conversions_value
-        {# 
-            Adapted from fivetran_utils.fill_pass_through_columns() macro. 
-            Ensures that downstream summations work if a connector schema is missing one of your facebook_ads__basic_ad_action_values_passthrough_metrics
-        #}
-        {% if var('facebook_ads__basic_ad_action_values_passthrough_metrics') %}
-            {% for field in var('facebook_ads__basic_ad_action_values_passthrough_metrics') %}
-                {% if field.transform_sql %}
-                    , coalesce(cast({{ field.transform_sql }} as {{ dbt.type_float() }}), 0) as {{ field.alias if field.alias else field.name }}
-                {% else %}
-                    , coalesce(cast({{ field.alias if field.alias else field.name }} as {{ dbt.type_float() }}), 0) as {{ field.alias if field.alias else field.name }}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+
+        {{ facebook_ads_fill_pass_through_columns(var('facebook_ads__basic_ad_action_values_passthrough_metrics')) }}
 
     from fields
 )

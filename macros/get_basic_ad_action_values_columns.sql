@@ -7,8 +7,7 @@
     {"name": "ad_id", "datatype": dbt.type_string()},
     {"name": "date", "datatype": "date"},
     {"name": "index", "datatype": dbt.type_int()},
-    {"name": "value", "datatype": dbt.type_float()},
-    {"name": "_7_d_click", "datatype": dbt.type_float()}
+    {"name": "value", "datatype": dbt.type_float()}
 ] %}
 
 {{ fivetran_utils.add_pass_through_columns(columns, var('facebook_ads__basic_ad_action_values_passthrough_metrics')) }}

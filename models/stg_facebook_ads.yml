@@ -66,7 +66,9 @@ models:
         description: "{{ doc('updated_time') }}"
         tests:
           - not_null
-
+      - name: conversion_domain
+        description: The domain you've configured the ad to convert to.
+            
   - name: stg_facebook_ads__ad_set_history
     description: Each record in this table reflects a Facebook ad set.
     tests:
@@ -106,6 +108,8 @@ models:
         description: Remaining budget of ad set.
       - name: status
         description: Status values are - 'ACTIVE', 'PAUSED', 'DELETED', 'ARCHIVED'.
+      - name: optimization_goal
+        description: The optimization goal this ad set is using. Possible values defined [here](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign/#fields).
 
   - name: stg_facebook_ads__campaign_history
     description: Each record in this table reflects a Facebook campaign.
@@ -237,3 +241,53 @@ models:
         description: The number of people who saw any content from your Page or about your Page. This metric is estimated.
       - name: frequency
         description: The average number of times each person saw your ad; it is calculated as impressions divided by reach.
+
+  - name: stg_facebook_ads__basic_ad_actions
+    description: >
+      Each record represents the daily conversion performance of an ad in Facebook. This is the prebuilt `basic_ad` report broken down by `action_type`.
+      Include more conversion value metrics by configuring the `facebook_ads__basic_ad_actions_passthrough_metrics` variable.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - ad_id
+            - action_type
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: action_type
+        description: >
+          The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.
+          Actions prepended by app_custom_event come from mobile app events and actions prepended by offsite_conversion come from the Facebook Pixel.
+      - name: ad_id
+        description: The ID of the ad the report relates to.
+      - name: date_day
+        description: The date of the reported performance.
+      - name: conversions
+        description: Conversion metric value using the default attribution window.
+
+  - name: stg_facebook_ads__basic_ad_action_values
+    description: >
+      Each record represents the daily conversion values associated with an ad in Facebook. This is the prebuilt `basic_ad` report broken down by `action_type` and `action_values`
+      Include more conversion value metrics by configuring the `facebook_ads__basic_ad_action_values_passthrough_metrics` variable.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - ad_id
+            - action_type
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: action_type
+        description: >
+          The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.
+          Actions prepended by app_custom_event come from mobile app events and actions prepended by offsite_conversion come from the Facebook Pixel.
+      - name: ad_id
+        description: The ID of the ad the report relates to.
+      - name: date_day
+        description: The date of the reported performance.
+      - name: conversions_value
+        description: Monetary value associated with the conversion action using the default attribution window.

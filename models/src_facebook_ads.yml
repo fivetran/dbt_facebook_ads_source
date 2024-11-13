@@ -57,6 +57,8 @@ sources:
             description: "{{ doc('_fivetran_synced') }}"
           - name: updated_time
             description: "{{ doc('updated_time') }}"
+          - name: conversion_domain
+            description: The domain you've configured the ad to convert to.
 
       - name: ad_set_history
         description: Each record in this table reflects a version of a Facebook ad set.
@@ -86,6 +88,8 @@ sources:
             description: Remaining budget of ad set.
           - name: status
             description: Status values are - 'ACTIVE', 'PAUSED', 'DELETED', 'ARCHIVED'.
+          - name: optimization_goal
+            description: The optimization goal this ad set is using. Possible values defined [here](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign/#fields).
 
       - name: basic_ad
         description: Each record represents the daily performance of an ad in Facebook.
@@ -113,6 +117,59 @@ sources:
             description: The average number of times each person saw your ad; it is calculated as impressions divided by reach.
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
+
+      - name: basic_ad_actions
+        description: Each record represents the daily conversion performance of an ad in Facebook. This is the prebuilt `basic_ad` report broken down by `action_type`.
+        identifier: "{{ var('facebook_ads_basic_ad_actions_identifier', 'basic_ad_actions') }}"
+        columns:
+          - name: _1_d_view
+            description: Conversion metric value using an attribution window of "1 day after viewing the ad". Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
+          - name: _7_d_click
+            description: Conversion metric value using an attribution window of "7 days after clicking the ad". Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
+          - name: _28_d_click
+            description: Conversion metric value using an attribution window of "28 days after clicking the ad". Deprecated by Facebook due to digital privacy initiatives. Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
+          - name: _fivetran_id
+            description: Defunct field.
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: action_type
+            description: >
+              The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.
+              Actions prepended by app_custom_event come from mobile app events and actions prepended by offsite_conversion come from the Facebook Pixel.
+          - name: ad_id
+            description: The ID of the ad the report relates to.
+          - name: date
+            description: The date of the reported performance.
+          - name: index
+            description: Index reflecting the `action_type` tracked for this ad on this day. Column of not much consequence. 
+          - name: inline
+            description: Conversion metric value using the attribution window that occurs on the ad itself. Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
+          - name: value
+            description: Conversion metric value using the default attribution window.
+
+      - name: basic_ad_action_values
+        description: Each record represents the daily conversion values associated with an ad in Facebook. This is the prebuilt `basic_ad` report broken down by `action_type` and `action_value`.
+        identifier: "{{ var('facebook_ads_basic_ad_action_values_identifier', 'basic_ad_action_values') }}"
+        freshness: null # Likely missing
+        columns:
+          - name: _7_d_click
+            description: Conversion metric value using an attribution window of "7 days after clicking the ad". Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.
+          - name: _fivetran_id
+            description: Defunct field.
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: action_type
+            description: >
+              The kind of actions taken on your ad, Page, app or event after your ad was served to someone, even if they didn't click on it. Action types include Page likes, app installs, conversions, event responses and more.
+              Actions prepended by app_custom_event come from mobile app events and actions prepended by offsite_conversion come from the Facebook Pixel.
+          - name: ad_id
+            description: The ID of the ad the report relates to.
+          - name: date
+            description: The date of the reported performance.
+          - name: index
+            description: Index reflecting the `action_type` tracked for this ad on this day. Column of not much consequence. 
+          - name: value
+            description: Monetary value associated with the convesion action using the default attribution window.
 
       - name: campaign_history
         description: Each record in this table reflects a version of a Facebook campaign.

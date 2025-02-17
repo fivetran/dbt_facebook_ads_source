@@ -36,7 +36,7 @@ final as (
         name as creative_name,
         page_link,
         template_page_link,
-        url_tags,
+        TO_JSON_STRING(url_tags) as url_tags,
         asset_feed_spec_link_urls,
         object_story_link_data_child_attachments,
         object_story_link_data_caption, 

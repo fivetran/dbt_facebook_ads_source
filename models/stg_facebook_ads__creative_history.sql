@@ -26,18 +26,15 @@ fields as (
 ),
 
 {% set column_type_query -%}
-{# {% if target.type == 'bigquery' %} #}
-    select lower(data_type) as data_type
+    select 
+        lower(data_type) as data_type
     from `{{ ref('stg_facebook_ads__creative_history_tmp').database }}`.`{{ ref('stg_facebook_ads__creative_history_tmp').schema }}`.INFORMATION_SCHEMA.COLUMNS
-
     where 
         lower(table_name) = '{{ ref("stg_facebook_ads__creative_history_tmp").name |lower }}'
         and lower(column_name) = 'url_tags'
-
-{# {% endif %} #}
 {%- endset %}
 
-{%- set column_type = dbt_utils.get_single_value(column_type_query, default="'string'") if execute and target.type == 'bigquery' else 'string' -%}
+{%- set column_type = dbt_utils.get_single_value(column_type_query, default="'string'") if execute and flags.WHICH in ('run', 'build') and target.type == 'bigquery' else 'string' -%}
 
 final as (
 

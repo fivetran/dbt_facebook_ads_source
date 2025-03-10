@@ -6,12 +6,21 @@ with base as (
     from {{ ref('stg_facebook_ads__creative_history_tmp') }}
 ),
 
+{%- set columns = adapter.get_columns_in_relation(ref('stg_facebook_ads__creative_history_tmp')) -%}
+{%- set ns = namespace(url_tags_column_type='string') -%}
+
+{% for column in columns %}
+    {%- if column.name|lower == 'url_tags' and target.type == 'bigquery' -%}
+        {%- set ns.url_tags_column_type = column.dtype|lower -%}
+    {%- endif -%}
+{%- endfor %}
+
 fields as (
 
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_facebook_ads__creative_history_tmp')),
+                source_columns=columns,
                 staging_columns=get_creative_history_columns()
             )
         }}
@@ -25,7 +34,7 @@ fields as (
     from base
 ),
 
-{% set column_type_query -%}
+{# {% set column_type_query -%}
     select 
         lower(data_type) as data_type
     from `{{ ref('stg_facebook_ads__creative_history_tmp').database }}`.`{{ ref('stg_facebook_ads__creative_history_tmp').schema }}`.INFORMATION_SCHEMA.COLUMNS
@@ -34,7 +43,7 @@ fields as (
         and lower(column_name) = 'url_tags'
 {%- endset %}
 
-{%- set column_type = dbt_utils.get_single_value(column_type_query, default="'string'") if execute and flags.WHICH in ('run', 'build') and target.type == 'bigquery' else 'string' -%}
+{%- set url_tags_column_type = dbt_utils.get_single_value(column_type_query, default="'string'") if execute and flags.WHICH in ('run', 'build') and target.type == 'bigquery' else 'string' -%} #}
 
 final as (
 
@@ -48,7 +57,7 @@ final as (
         page_link,
         template_page_link,
         {# {% if var('facebook_ads__json_enabled', false) and target.type == 'bigquery' -%} #} -- using variable
-        {% if column_type == 'json' -%}
+        {% if ns.url_tags_column_type == 'json' -%}
             TO_JSON_STRING(url_tags)
         {%- else -%}
             url_tags

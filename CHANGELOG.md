@@ -7,6 +7,7 @@
 ## Documentation
 - Corrected references to connectors and connections in the README. ([#40](https://github.com/fivetran/dbt_facebook_ads_source/pull/40))
 - Adjusted the header formatting in the README. ([PR #43](https://github.com/fivetran/dbt_facebook_ads_source/pull/43))
+- Updated LICENSE. ([PR #43](https://github.com/fivetran/dbt_facebook_ads_source/pull/43))
 
 # dbt_facebook_ads_source v0.8.0
 

@@ -45,7 +45,7 @@ final as (
         name as creative_name,
         page_link,
         template_page_link,
-        {% if ns.url_tags_column_type == 'json' -%}
+        {% if ns.url_tags_column_type == 'json' and target.type == 'bigquery' -%}
             TO_JSON_STRING(url_tags)
         {%- else -%}
             url_tags

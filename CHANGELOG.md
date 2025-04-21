@@ -1,3 +1,8 @@
+# dbt_facebook_ads_source v0.9.0
+
+## Feature Updates: Including Country + Region Reports
+- TODO
+
 # dbt_facebook_ads_source v0.8.1
 
 ## Bug Fixes

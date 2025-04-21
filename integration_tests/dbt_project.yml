@@ -1,5 +1,5 @@
 name: 'facebook_ads_source_integration_tests_2'
-version: '0.8.1'
+version: '0.9.0'
 profile: 'integration_tests'
 config-version: 2
 
@@ -32,6 +32,10 @@ vars:
     facebook_ads_basic_ad_action_values_identifier: "facebook_ads_basic_ad_action_values_data"
     facebook_ads_campaign_history_identifier: "facebook_ads_campaign_history_data"
     facebook_ads_creative_history_identifier: "facebook_ads_creative_history_data"
+    facebook_ads_demographics_country_identifier: "facebook_ads_demographics_country"
+    facebook_ads_demographics_country_actions_identifier: "facebook_ads_demographics_country_actions"
+    facebook_ads_demographics_region_identifier: "facebook_ads_demographics_region"
+    facebook_ads_demographics_region_actions_identifier: "facebook_ads_demographics_region_actions"
 
 seeds:
   facebook_ads_source_integration_tests_2:

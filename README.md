@@ -77,6 +77,16 @@ vars:
 
 To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
 
+#### Disable Country and Region Reports
+
+TODO
+
+```yml
+vars:
+  facebook_ads__using_country: True/False
+  facebook_ads__using_region: True/False
+```
+
 #### Passing Through Additional Metrics
 By default, this package will select `clicks`, `impressions`, `cost`, and conversion `value` (using the [default](https://fivetran.com/docs/connectors/applications/facebook-ads/custom-reports#attributionwindows) attribution window) from the source reporting tables (`BASIC_AD`, `BASIC_AD_ACTIONS`, and `BASIC_AD_ACTION_VALUES`) to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) and transformed (`transform_sql`) if desired, but not required. Only the `name` of each metric field is required. Use the below format for declaring the respective pass-through variables:
 
@@ -96,6 +106,14 @@ vars:
     facebook_ads__basic_ad_action_values_passthrough_metrics: # add conversion metrics found in BASIC_AD_ACTION_VALUES
       - name: "_7_d_click"
         alias: "conversion_value_7d_click"
+      - name: "inline"
+    facebook_ads__demographics_country_passthrough_metrics: # Add metrics from DEMOGRAPHICS_COUNTRY
+      - name: "inline_link_clicks"
+    facebook_ads__demographics_country_actions_passthrough_metrics: # Add conversion metrics from DEMOGRAPHICS_COUNTRY_ACTIONS
+      - name: "inline"
+    facebook_ads__demographics_region_passthrough_metrics: # Add metrics from DEMOGRAPHICS_REGION
+      - name: "cost_per_inline_link_click"
+    facebook_ads__demographics_region_actions_passthrough_metrics: # Add conversion metrics from DEMOGRAPHICS_REGION_ACTIONS
       - name: "inline"
 ```
 

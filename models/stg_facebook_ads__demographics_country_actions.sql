@@ -1,4 +1,4 @@
-{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True) and var('facebook_ads__using_country', True)) }}
+{{ config(enabled=var('ad_reporting__facebook_ads_enabled', True) and var('facebook_ads__using_demographic_country', True)) }}
 
 
 with base as (

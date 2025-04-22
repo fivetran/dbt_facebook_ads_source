@@ -83,8 +83,8 @@ TODO
 
 ```yml
 vars:
-  facebook_ads__using_country: True/False
-  facebook_ads__using_region: True/False
+  facebook_ads__using_demographic_country: True/False
+  facebook_ads__using_demographic_region: True/False
 ```
 
 #### Passing Through Additional Metrics

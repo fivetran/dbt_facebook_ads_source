@@ -4,8 +4,8 @@
 
 ## Schema Updates
 
-**8 total changes • 0 possible breaking changes**
-| **Model/Column** | **Change type** | **Old name** | **New name** | **Notes** |
+**11 total changes • 0 possible breaking changes**
+| **Model** | **Change type** | **Old name** | **New name** | **Notes** |
 | ---------------- | --------------- | ------------ | ------------ | --------- |
 | stg_facebook_ads__demographics_country | New Model |   |   |  Uses `demographics_country` source table  |
 | stg_facebook_ads__demographics_country_tmp | New Model |   |   | Uses `demographics_country` source table   |
@@ -15,6 +15,9 @@
 | stg_facebook_ads__demographics_region_tmp | New Model |   |   | Uses `demographics_region` source table   |
 | stg_facebook_ads__demographics_region_actions | New Model |   |   |  Uses `demographics_region_actions` source table  |
 | stg_facebook_ads__demographics_region_actions_tmp | New Model |   |   | Uses `demographics_region_actions` source table   |
+| stg_facebook_ads__account_history | New Column |   | `business_state`    |  |
+| stg_facebook_ads__account_history | New Column |   | `timezone_offset_hours_utc`    |  |
+| stg_facebook_ads__account_history | New Column |   | `min_daily_budget`    |  |
 
 ## Feature Updates:
 - Added the `facebook_ads__using_demographics_country` and `facebook_ads__using_demographics_region` variables, which can be used to enable or disable the above transformations related to the `demographics_country`/`demograhics_country_actions` and `demographics_region`/`demographics_region_actions` tables.

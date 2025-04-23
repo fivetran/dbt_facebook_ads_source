@@ -34,6 +34,12 @@ models:
         description: Currency associated with account.
       - name: timezone_name
         description: Timezone associated with account.
+      - name: timezone_offset_hours_utc
+        description: Time zone difference from UTC.
+      - name: business_state
+        description: State abbreviation for business address.
+      - name: min_daily_budget
+        description: The minimum daily budget for this Ad Account.
 
   - name: stg_facebook_ads__ad_history
     description: Each record in this table reflects a Facebook ad.
@@ -294,6 +300,13 @@ models:
   
   - name: stg_facebook_ads__demographics_country
     description: "{{  doc('demographics_country') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - country_id
+            - account_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -318,6 +331,14 @@ models:
 
   - name: stg_facebook_ads__demographics_country_actions
     description: "{{  doc('demographics_country_actions') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - country_id
+            - account_id
+            - action_type
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -334,6 +355,13 @@ models:
 
   - name: stg_facebook_ads__demographics_region
     description: "{{  doc('demographics_region') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - region_id
+            - account_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -358,6 +386,14 @@ models:
 
   - name: stg_facebook_ads__demographics_region_actions
     description: "{{  doc('demographics_region_actions') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - region_id
+            - account_id
+            - action_type
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"

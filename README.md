@@ -51,7 +51,7 @@ If you are not using the [Facebook Ads](https://github.com/fivetran/dbt_facebook
 ```yml
 packages:
   - package: fivetran/facebook_ads_source
-    version: [">=0.8.0", "<0.9.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.9.0", "<0.10.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 ### Step 3: Define database and schema variables
 By default, this package runs using your destination and the `facebook_ads` schema. If this is not where your Facebook Ads data is (for example, if your facebook_ads schema is named `facebook_ads_fivetran`), add the following configuration to your root `dbt_project.yml` file:

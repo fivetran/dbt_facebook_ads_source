@@ -246,6 +246,8 @@ sources:
       - name: demographics_country
         identifier: '{{ var("facebook_ads_demographics_country_identifier", "demographics_country") }}'
         description: '{{ doc("demographics_country") }}'
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__demographics_country_enabled', false) }}"
         columns:
           - name: account_id
             description: '{{ doc("account_id") }}'
@@ -281,6 +283,8 @@ sources:
       - name: demographics_country_actions
         identifier: '{{ var("facebook_ads_demographics_country_actions_identifier", "demographics_country_actions") }}'
         description: '{{ doc("demographics_country_actions") }}'
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__demographics_country_actions_enabled', false) }}"
         columns:
           - name: account_id
             description: '{{ doc("account_id") }}'
@@ -306,6 +310,8 @@ sources:
       - name: demographics_region
         identifier: '{{ var("facebook_ads_demographics_region_identifier", "demographics_region") }}'
         description: '{{ doc("demographics_region") }}'
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__demographics_region_enabled', false) }}"
         columns:
           - name: account_id
             description: '{{ doc("account_id") }}'
@@ -341,6 +347,8 @@ sources:
       - name: demographics_region_actions
         identifier: '{{ var("facebook_ads_demographics_region_actions_identifier", "demographics_region_actions") }}'
         description: '{{ doc("demographics_region_actions") }}'
+        config:
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__demographics_region_actions_enabled', false) }}"
         columns:
           - name: account_id
             description: '{{ doc("account_id") }}'

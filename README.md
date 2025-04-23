@@ -77,14 +77,17 @@ vars:
 
 To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
 
-#### Disable Country and Region Reports
+#### Eanble or Disable Country and Region Reports
+This package uses the `demographics_country`, `demographics_country_actions`, `demographics_region`, and `demographics_region_actions` [pre-built](https://fivetran.com/docs/connectors/applications/facebook-ads/prebuilt-reports) reports, but takes into consideration that not every user may use these tables.
 
-TODO
+If you are running the Facebook Ads transform package via Fivetran Quickstart, transformations of the above tables will be dynamically enabled or disabled. Otherwise, transformations of these tables are **disabled** by default.
+
+To enable transformations of the above geo-focused reports, add the following variable configurations to your root `dbt_project.yml` file:
 
 ```yml
 vars:
-  facebook_ads__using_demographic_country: True/False
-  facebook_ads__using_demographic_region: True/False
+  facebook_ads__using_demographics_country: True # False by default. Will enable/disable use of the `demographics_country` and `demographics_country_actions` reports
+  facebook_ads__using_demographics_region: True # False by default. Will enable/disable use of the `demographics_region` and `demographics_region_actions` reports
 ```
 
 #### Passing Through Additional Metrics

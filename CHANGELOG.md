@@ -1,5 +1,7 @@
 # dbt_facebook_ads_source v0.9.0
 
+[PR #44](https://github.com/fivetran/dbt_facebook_ads_source/pull/44) introduces the following updates:
+
 ## Schema Updates
 
 **8 total changes • 0 possible breaking changes**

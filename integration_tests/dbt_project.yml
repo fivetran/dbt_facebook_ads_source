@@ -7,6 +7,11 @@ models:
   +schema: "facebook_ads_source_{{ var('directed_schema','dev') }}"
   
 vars:
+  # Comment IN docs generate
+  # facebook_ads__using_demographics_country: true
+  # facebook_ads__using_demographics_region: true
+
+  # Comment OUT for docs generation
   facebook_ads__basic_ad_passthrough_metrics:
     - name: "reach"
     - name: "frequency"
@@ -56,13 +61,13 @@ seeds:
         inline: "float"
         _1_d_view: "float"
         _7_d_click: "float"
-    facebook_ads_country_actions_data:
+    facebook_ads_demographics_country_actions_data:
       +column_types:
         value: "float"
-    facebook_ads_region_actions_data:
+    facebook_ads_demographics_region_actions_data:
       +column_types:
         value: "float"
-        
+
 dispatch:
   - macro_namespace: dbt_utils
     search_order: ['spark_utils', 'dbt_utils']

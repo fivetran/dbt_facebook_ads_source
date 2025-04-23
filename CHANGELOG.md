@@ -17,7 +17,7 @@
 | stg_facebook_ads__demographics_region_actions_tmp | New Model |   |   | Uses `demographics_region_actions` source table   |
 
 ## Feature Updates:
-- Added the `facebook_ads__using_demographics_country` and `facebook_ads__using_demographics_region` variables, which can be used to enable or disable the above transformations related to the new `demographics_country`/`demograhics_country_actions` and `demographics_region`/`demographics_region_actions` tables.
+- Added the `facebook_ads__using_demographics_country` and `facebook_ads__using_demographics_region` variables, which can be used to enable or disable the above transformations related to the `demographics_country`/`demograhics_country_actions` and `demographics_region`/`demographics_region_actions` tables.
   - These variables are dynamically set for Fivetran Quickstart users, but **false** by default otherwise. See [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#enable-or-disable-country-and-region-reports) for more details.
 - Introduced the following passthrough column variables, which can be used to pass through additional metrics fields from their respective source reports to downstream models. See [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics) for more details.
   - `facebook_ads__demographics_country_passthrough_metrics`

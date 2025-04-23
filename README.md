@@ -91,7 +91,7 @@ vars:
 ```
 
 #### Passing Through Additional Metrics
-By default, this package will select `clicks`, `impressions`, `cost`, and conversion `value` (using the [default](https://fivetran.com/docs/connectors/applications/facebook-ads/custom-reports#attributionwindows) attribution window) from the source reporting tables (`BASIC_AD`, `BASIC_AD_ACTIONS`, and `BASIC_AD_ACTION_VALUES`) to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) and transformed (`transform_sql`) if desired, but not required. Only the `name` of each metric field is required. Use the below format for declaring the respective pass-through variables:
+By default, this package will select `clicks`, `impressions`, `cost`, `reach`, `frequency`, and conversion `value` (using the [default](https://fivetran.com/docs/connectors/applications/facebook-ads/custom-reports#attributionwindows) attribution window) from the source reporting tables (`BASIC_AD`, `BASIC_AD_ACTIONS`, `BASIC_AD_ACTION_VALUES`, `DEMOGRAPHICS_COUNTRY`, `DEMOGRAPHICS_REGION`, `DEMOGRAPHICS_COUNTRY_ACTIONS`, and `DEMOGRAPHICS_REGION_ACTIONS`) to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) and transformed (`transform_sql`) if desired, but not required. Only the `name` of each metric field is required. Use the below format for declaring the respective pass-through variables:
 
 ```yml
 vars:

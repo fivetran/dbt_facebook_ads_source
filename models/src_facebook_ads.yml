@@ -36,6 +36,14 @@ sources:
             description: Currency associated with account.
           - name: timezone_name
             description: Timezone associated with account.
+          - name: business_country_code
+            description: Country code of business associated to account.
+          - name: business_state
+            description: State abbreviation for business address.
+          - name: timezone_offset_hours_utc
+            description: Time zone difference from UTC.
+          - name: min_daily_budget
+            description: The minimum daily budget for this Ad Account.
 
       - name: ad_history
         description: Each record in this table reflects a version of a Facebook ad.
@@ -247,7 +255,7 @@ sources:
         identifier: '{{ var("facebook_ads_demographics_country_identifier", "demographics_country") }}'
         description: '{{ doc("demographics_country") }}'
         config:
-          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__demographics_country_enabled', false) }}"
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__using_demographics_country', false) }}"
         columns:
           - name: account_id
             description: '{{ doc("account_id") }}'
@@ -284,7 +292,7 @@ sources:
         identifier: '{{ var("facebook_ads_demographics_country_actions_identifier", "demographics_country_actions") }}'
         description: '{{ doc("demographics_country_actions") }}'
         config:
-          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__demographics_country_actions_enabled', false) }}"
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__using_demographics_country', false) }}"
         columns:
           - name: account_id
             description: '{{ doc("account_id") }}'
@@ -311,7 +319,7 @@ sources:
         identifier: '{{ var("facebook_ads_demographics_region_identifier", "demographics_region") }}'
         description: '{{ doc("demographics_region") }}'
         config:
-          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__demographics_region_enabled', false) }}"
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__using_demographics_region', false) }}"
         columns:
           - name: account_id
             description: '{{ doc("account_id") }}'
@@ -348,7 +356,7 @@ sources:
         identifier: '{{ var("facebook_ads_demographics_region_actions_identifier", "demographics_region_actions") }}'
         description: '{{ doc("demographics_region_actions") }}'
         config:
-          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__demographics_region_actions_enabled', false) }}"
+          enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) and var('facebook_ads__using_demographics_region', false) }}"
         columns:
           - name: account_id
             description: '{{ doc("account_id") }}'

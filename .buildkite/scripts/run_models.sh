@@ -19,4 +19,6 @@ dbt deps
 dbt seed --target "$db" --full-refresh
 dbt run --target "$db" --full-refresh
 dbt test --target "$db"
+dbt run --target "$db" --vars '{facebook_ads__using_demographics_country: true, facebook_ads__using_demographics_region: true}' --target "$db" --full-refresh
+dbt test --vars '{facebook_ads__using_demographics_country: true, facebook_ads__using_demographics_region: true}' --target "$db"
 dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"

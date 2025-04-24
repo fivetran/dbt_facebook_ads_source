@@ -7,7 +7,6 @@
     {"name": "action_type", "datatype": dbt.type_string()},
     {"name": "date", "datatype": "date"},
     {"name": "index", "datatype": dbt.type_int()},
-    {"name": "inline", "datatype": dbt.type_float()},
     {"name": "value", "datatype": dbt.type_float()}
 ] %}
 

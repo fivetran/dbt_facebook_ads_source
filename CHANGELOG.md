@@ -4,7 +4,7 @@
 
 ## Schema Updates
 
-**11 total changes • 0 possible breaking changes**
+**9 total changes • 0 possible breaking changes**
 | **Data Model** | **Change type** | **Old name** | **New name** | **Notes** |
 | ---------------- | --------------- | ------------ | ------------ | --------- |
 | stg_facebook_ads__demographics_country | New Model |   |   |  Uses `demographics_country` source table  |

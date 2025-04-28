@@ -299,7 +299,7 @@ models:
         description: Monetary value associated with the conversion action using the default attribution window.
   
   - name: stg_facebook_ads__demographics_country
-    description: "{{  doc('demographics_country') }}"
+    description: "{{ doc('demographics_country') }}"
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -330,7 +330,7 @@ models:
         description: "{{ doc('frequency') }}"
 
   - name: stg_facebook_ads__demographics_country_actions
-    description: "{{  doc('demographics_country_actions') }}"
+    description: "{{ doc('demographics_country_actions') }}"
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -354,7 +354,7 @@ models:
         description: "{{ doc('conversions') }}"
 
   - name: stg_facebook_ads__demographics_region
-    description: "{{  doc('demographics_region') }}"
+    description: "{{ doc('demographics_region') }}"
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -385,7 +385,7 @@ models:
         description: "{{ doc('frequency') }}"
 
   - name: stg_facebook_ads__demographics_region_actions
-    description: "{{  doc('demographics_region_actions') }}"
+    description: "{{ doc('demographics_region_actions') }}"
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:

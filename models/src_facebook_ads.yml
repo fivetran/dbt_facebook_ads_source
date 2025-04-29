@@ -36,8 +36,6 @@ sources:
             description: Currency associated with account.
           - name: timezone_name
             description: Timezone associated with account.
-          - name: business_country_code
-            description: Country code of business associated to account.
           - name: business_state
             description: State abbreviation for business address.
           - name: timezone_offset_hours_utc

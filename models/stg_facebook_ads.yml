@@ -34,6 +34,12 @@ models:
         description: Currency associated with account.
       - name: timezone_name
         description: Timezone associated with account.
+      - name: timezone_offset_hours_utc
+        description: Time zone difference from UTC.
+      - name: business_state
+        description: State abbreviation for business address.
+      - name: min_daily_budget
+        description: The minimum daily budget for this Ad Account.
 
   - name: stg_facebook_ads__ad_history
     description: Each record in this table reflects a Facebook ad.
@@ -291,3 +297,113 @@ models:
         description: The date of the reported performance.
       - name: conversions_value
         description: Monetary value associated with the conversion action using the default attribution window.
+  
+  - name: stg_facebook_ads__demographics_country
+    description: "{{ doc('demographics_country') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - country_id
+            - account_id
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: country
+        description: "{{ doc('country') }}"
+      - name: date_day
+        description: "{{ doc('date') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: clicks
+        description: "{{ doc('inline_link_clicks') }}"
+      - name: spend
+        description: "{{ doc('spend') }}"
+      - name: reach
+        description: "{{ doc('reach') }}"
+      - name: frequency
+        description: "{{ doc('frequency') }}"
+
+  - name: stg_facebook_ads__demographics_country_actions
+    description: "{{ doc('demographics_country_actions') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - country_id
+            - account_id
+            - action_type
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: action_type
+        description: "{{ doc('action_type') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: date_day
+        description: "{{ doc('date') }}"
+      - name: conversions
+        description: "{{ doc('conversions') }}"
+
+  - name: stg_facebook_ads__demographics_region
+    description: "{{ doc('demographics_region') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - region_id
+            - account_id
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: region_id
+        description: "{{ doc('region_id') }}"
+      - name: region
+        description: "{{ doc('region') }}"
+      - name: date_day
+        description: "{{ doc('date') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: clicks
+        description: "{{ doc('inline_link_clicks') }}"
+      - name: spend
+        description: "{{ doc('spend') }}"
+      - name: reach
+        description: "{{ doc('reach') }}"
+      - name: frequency
+        description: "{{ doc('frequency') }}"
+
+  - name: stg_facebook_ads__demographics_region_actions
+    description: "{{ doc('demographics_region_actions') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - date_day
+            - region_id
+            - account_id
+            - action_type
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: region_id
+        description: "{{ doc('region_id') }}"
+      - name: action_type
+        description: "{{ doc('action_type') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: date_day
+        description: "{{ doc('date') }}"
+      - name: conversions
+        description: "{{ doc('conversions') }}"

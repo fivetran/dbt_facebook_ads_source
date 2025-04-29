@@ -34,9 +34,12 @@ final as (
         name as account_name,
         account_status,
         business_country_code,
+        business_state,
         created_time as created_at,
         currency,
         timezone_name,
+        timezone_offset_hours_utc,
+        min_daily_budget,
         case when id is null and _fivetran_synced is null 
             then row_number() over (partition by source_relation order by source_relation)
         else row_number() over (partition by source_relation, id order by _fivetran_synced desc) end = 1 as is_most_recent_record

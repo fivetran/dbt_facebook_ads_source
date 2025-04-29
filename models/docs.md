@@ -22,15 +22,15 @@ The source of the record if the unioning functionality is being used. If not thi
 
 {% docs account_id %} The ID of the ad account that this ad belongs to. {% enddocs %}
 
-{% docs cost_per_inline_link_click %} The average cost of each inline link click. {% enddocs %}
+{% docs cost_per_inline_link_click %} The average cost of each inline link click. Not included in downstream models by default. To persist this field, refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics). {% enddocs %}
 
 {% docs country %} Country whose ad performance is being reported on. {% enddocs %}
 
-{% docs cpc %} The average cost for each click (all). {% enddocs %}
+{% docs cpc %} The average cost for each click (all). Not included in downstream models by default. To persist this field, refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics). {% enddocs %}
 
-{% docs cpm %} The average cost for 1,000 impressions. {% enddocs %}
+{% docs cpm %} The average cost for 1,000 impressions. Not included in downstream models by default. To persist this field, refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics). {% enddocs %}
 
-{% docs ctr %} The percentage of times people saw your ad and performed a click (all). {% enddocs %}
+{% docs ctr %} The percentage of times people saw your ad and performed a click (all). Not included in downstream models by default. To persist this field, refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics). {% enddocs %}
 
 {% docs date %} The date of the reported performance. {% enddocs %}
 
@@ -38,7 +38,7 @@ The source of the record if the unioning functionality is being used. If not thi
 
 {% docs impressions %} The number of impressions the ads had on the given day. {% enddocs %}
 
-{% docs inline_link_click_ctr %} The percentage of time people saw your ads and performed an inline link click. {% enddocs %}
+{% docs inline_link_click_ctr %} The percentage of time people saw your ads and performed an inline link click. Not included in downstream models by default. To persist this field, refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics). {% enddocs %}
 
 {% docs inline_link_clicks %}
 The number of clicks on links to select destinations or experiences, on or off Facebook-owned properties. Inline link clicks use a fixed 1-day-click attribution window.
@@ -53,11 +53,11 @@ Each record represents daily conversion performance by country. This is the preb
 {% enddocs %}
 
 {% docs _1_d_view %}
-Conversion metric value using an attribution window of "1 day after viewing the ad"
+Conversion metric value using an attribution window of "1 day after viewing the ad". Not included in downstream models by default. To persist this field, refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics).
 {% enddocs %}
 
 {% docs _7_d_click %}
-Conversion metric value using an attribution window of "7 days after clicking the ad".
+Conversion metric value using an attribution window of "7 days after clicking the ad". Not included in downstream models by default. To persist this field, refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics).
 {% enddocs %}
 
 {% docs index %}
@@ -74,7 +74,7 @@ Conversion metric value using the default attribution window.
 {% enddocs %}
 
 {% docs inline %}
-Conversion metric value using the attribution window that occurs on the ad itself.
+Conversion metric value using the attribution window that occurs on the ad itself. Not included in downstream models by default. To persist this field, refer to the [README](https://github.com/fivetran/dbt_facebook_ads_source?tab=readme-ov-file#passing-through-additional-metrics).
 {% enddocs %}
 
 {% docs region %}

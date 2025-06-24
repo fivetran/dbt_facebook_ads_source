@@ -20,7 +20,7 @@
 - Materializes [Facebook Ads staging tables](https://fivetran.github.io/dbt_facebook_ads_source/#!/overview/facebook_ads_source/models/?g_v=1&g_e=seeds) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/facebook-ads#schemainformation). These staging tables clean, test, and prepare your facebook_ads data from [Fivetran's connector](https://fivetran.com/docs/applications/facebook-ads) for analysis by doing the following:
   - Name columns for consistency across all packages and for easier analysis
   - Adds freshness tests to source data
-    > dbt Core >= 1.9.5 is required to run freshness tests out of the box. See other options [here](https://github.com/fivetran/dbt_facebook_ads_source/blob/main/CHANGELOG.md#breaking-change-for-dbt-core--195).
+    > dbt Core >= 1.9.6 is required to run freshness tests out of the box. See other options [here](https://github.com/fivetran/dbt_facebook_ads_source/blob/main/CHANGELOG.md#breaking-change-for-dbt-core--196).
   - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
 - Generates a comprehensive data dictionary of your Facebook Ads data through the [dbt docs site](https://fivetran.github.io/dbt_facebook_ads_source/).
 - These tables are designed to work simultaneously with our [Facebook Ads transformation package](https://github.com/fivetran/dbt_facebook_ads).

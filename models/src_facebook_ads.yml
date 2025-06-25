@@ -7,14 +7,13 @@ sources:
     
     loader: Fivetran
     loaded_at_field: _fivetran_synced
-    
-    freshness: 
-      warn_after: {count: 48, period: hour}
-      error_after: {count: 168, period: hour}
 
     config:
       enabled: "{{ var('ad_reporting__facebook_ads_enabled', true) }}"
-      
+      freshness: 
+        warn_after: {count: 48, period: hour}
+        error_after: {count: 168, period: hour}
+
     tables:
       - name: account_history
         description: Each record in this table reflects a version of a Facebook ad account.
@@ -156,7 +155,8 @@ sources:
       - name: basic_ad_action_values
         description: Each record represents the daily conversion values associated with an ad in Facebook. This is the prebuilt `basic_ad` report broken down by `action_type` and `action_value`.
         identifier: "{{ var('facebook_ads_basic_ad_action_values_identifier', 'basic_ad_action_values') }}"
-        freshness: null # Likely missing
+        config:
+          freshness: null # Likely missing
         columns:
           - name: _7_d_click
             description: Conversion metric value using an attribution window of "7 days after clicking the ad". Not included in downstream models by default, but can be added using the `facebook_ads__basic_ad_actions_passthrough_metrics` var.

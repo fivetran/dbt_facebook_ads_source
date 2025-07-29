@@ -25,7 +25,8 @@ fields as (
 final as (
     
     select 
-        source_relation, 
+        source_relation,
+        index,
         lower(action_type) as action_type,
         cast(ad_id as {{ dbt.type_bigint() }}) as ad_id,
         date as date_day,

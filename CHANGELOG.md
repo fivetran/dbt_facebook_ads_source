@@ -1,3 +1,7 @@
+# dbt_facebook_ads_source v0.10.1
+
+Resolve **unique_combination_of_columns** test failures under **models/stg_facebook_ads__basic_ad_actions.sql** ([issue #47](https://github.com/fivetran/dbt_facebook_ads_source/issues/47)). This test should use `index` instead of `action_type`.
+
 # dbt_facebook_ads_source v0.10.0
 
 [PR #45](https://github.com/fivetran/dbt_facebook_ads_source/pull/45) includes the following updates:

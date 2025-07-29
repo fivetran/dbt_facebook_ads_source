@@ -258,7 +258,7 @@ models:
             - source_relation
             - date_day
             - ad_id
-            - action_type
+            - index
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
